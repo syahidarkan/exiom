@@ -79,15 +79,19 @@ def reddit_deep(target: str, sort: str = "hot", limit: int = 20):
     os.makedirs(SESSIONS_DIR, exist_ok=True)
     session_file = os.path.join(SESSIONS_DIR, "reddit.json")
 
+    UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+          "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
+
     with sync_playwright() as p:
         # Launch headless if session exists, headed if first time
         headless = os.path.exists(session_file)
-        browser = p.chromium.launch(headless=headless)
+        browser = p.chromium.launch(headless=headless,
+                                    args=["--disable-blink-features=AutomationControlled"])
 
+        ctx_kwargs = {"user_agent": UA}
         if os.path.exists(session_file):
-            ctx = browser.new_context(storage_state=session_file)
-        else:
-            ctx = browser.new_context()
+            ctx_kwargs["storage_state"] = session_file
+        ctx = browser.new_context(**ctx_kwargs)
 
         page = ctx.new_page()
 
@@ -105,33 +109,33 @@ def reddit_deep(target: str, sort: str = "hot", limit: int = 20):
         ctx.storage_state(path=session_file)
         print(f"Session saved to {session_file}", file=sys.stderr)
 
-        # Extract posts using Reddit's JSON API endpoint
-        json_url = url.rstrip("/") + ".json?limit=" + str(min(limit, 100))
-        page.goto(json_url)
-        content = page.content()
+        # Scrape rendered HTML — Reddit's new UI uses <shreddit-post> custom elements
+        posts = []
+        els = page.query_selector_all("shreddit-post")
+        for el in els[:limit]:
+            title   = el.get_attribute("post-title") or ""
+            score   = el.get_attribute("score") or "0"
+            comments = el.get_attribute("comment-count") or "0"
+            permalink = el.get_attribute("permalink") or ""
+            author  = el.get_attribute("author") or ""
+            flair   = el.get_attribute("flair-text") or ""
+            if not title:
+                title = el.inner_text().strip()[:120]
+            posts.append({
+                "title":    title,
+                "score":    int(score) if score.isdigit() else 0,
+                "comments": int(comments) if comments.isdigit() else 0,
+                "url":      f"https://reddit.com{permalink}" if permalink else "",
+                "author":   author,
+                "flair":    flair,
+            })
 
-        # Parse JSON from page body
-        import re
-        match = re.search(r'<pre[^>]*>(\{.*\})</pre>', content, re.DOTALL)
-        if match:
-            data = json.loads(match.group(1))
-            posts = []
-            for child in data.get("data", {}).get("children", []):
-                d = child.get("data", {})
-                posts.append({
-                    "title":    d.get("title", ""),
-                    "score":    d.get("score", 0),
-                    "comments": d.get("num_comments", 0),
-                    "url":      f"https://reddit.com{d.get('permalink', '')}",
-                    "selftext": d.get("selftext", "")[:300],
-                    "flair":    d.get("link_flair_text", ""),
-                })
-            print(json.dumps(posts, indent=2, ensure_ascii=False))
-        else:
-            # Fallback: extract from rendered page
-            titles = page.query_selector_all('h3, [data-testid="post-title"]')
-            posts = [{"title": t.inner_text()} for t in titles[:limit]]
-            print(json.dumps(posts, indent=2, ensure_ascii=False))
+        # Fallback: old Reddit uses article tags or h3
+        if not posts:
+            els = page.query_selector_all('h3, [data-testid="post-title"]')
+            posts = [{"title": e.inner_text().strip()} for e in els[:limit] if e.inner_text().strip()]
+
+        print(json.dumps(posts, indent=2, ensure_ascii=False))
 
         browser.close()
 
