@@ -1,0 +1,29 @@
+# Company Profile — Exiom
+
+- **Nama brand**: Exiom
+- **Tagline**: "Every system, made to think."
+- **Domain**: exiom.id
+- **Email bisnis**: exiom.consultant@gmail.com
+- **Nomor WA bisnis**: TODO (belum di-setup)
+- **Alamat/legalitas (PT/CV/perorangan)**: TODO (belum ada badan hukum — kontrak & invoice sementara pakai nama perorangan sampai legalitas jadi)
+- **Layanan**:
+  - AI & machine learning integration (fokus utama/diferensiasi)
+  - Web development
+  - Mobile app
+  - Custom software & system development
+  - SaaS development
+  - Process automation
+  - Deep learning / data pipeline
+  - UI/UX design
+  - Digital marketing
+  - SEO
+- **Positioning**: IT consultancy & software studio dengan spesialisasi integrasi AI ke sistem yang sudah berjalan — bukan vendor AI generik yang cuma nempelin chatbot, tapi partner yang memasukkan intelligence ke dalam arsitektur produk klien. Setiap project (web, app, system, automation) ditawarkan dengan opsi "AI layer" sebagai pembeda.
+- **Segmen klien**: UMKM, startup, enterprise — semua segmen, dengan AI integration sebagai nilai tambah di tiap level
+- **Logo/visual identity**: Wordmark "Exiom", sans-serif tebal minimal (Space Grotesk / Neue Montreal), tanpa ikon rumit — mengikuti pola logo firma konsultan (PwC, Deloitte, Accenture)
+- **Color palette**:
+  - Primary (Charcoal): `#1C1C1E`
+  - Accent (Signal Orange): `#FF5A1F` — dipakai terbatas (CTA, highlight, logo saja)
+  - Neutral: `#FAFAFA`
+  - Text: `#2A2A2A`
+- **Tipografi**: Heading — Space Grotesk / Neue Montreal; Body — Inter / IBM Plex Sans
+- **Nada komunikasi brand (ringkas, detail di brand-voice.md)**: Profesional, presisi, percaya diri tanpa sombong — gaya firma konsultan tech, bukan agensi digital kasual. Diferensiasi lewat substansi teknis, bukan hype AI.

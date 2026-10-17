@@ -1,0 +1,76 @@
+# LiteLLM config untuk 9 agent bisnis Exiom
+# Port: 4001 (terpisah dari LiteLLM personal Owner di port 4000)
+# 4 API key group sesuai pengelompokan di handbook
+#
+# SETUP:
+#   1. Isi API key di /home/naca/pemrograman/virtual office agent/.env (lihat .env.example)
+#   2. jalankan: ./scripts/start-business-litellm.sh
+#
+# COST ATTRIBUTION (laporan Hugo):
+#   g1 = kenzie + adi
+#   g2 = mia + deril + gagah
+#   g3 = nela + ale + joce
+#   g4 = hugo
+
+model_list:
+
+  # ── GROUP 1: Kenzie + Adi ──────────────────────────────────────────
+  - model_name: g1-sonnet
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G1
+
+  - model_name: g1-haiku
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G1
+
+  - model_name: g1-opus
+    litellm_params:
+      model: anthropic/claude-opus-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G1
+
+  # ── GROUP 2: Mia + Deril + Gagah ──────────────────────────────────
+  - model_name: g2-sonnet
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G2
+
+  - model_name: g2-haiku
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G2
+
+  # ── GROUP 3: Nela + Ale + Joce ─────────────────────────────────────
+  - model_name: g3-sonnet
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G3
+
+  - model_name: g3-haiku
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G3
+
+  # ── GROUP 4: Hugo ──────────────────────────────────────────────────
+  - model_name: g4-sonnet
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G4
+
+  - model_name: g4-haiku
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/EXIOM_CLAUDE_KEY_G4
+
+router_settings:
+  routing_strategy: simple-shuffle
+  num_retries: 3
+  retry_after: 5
+  allowed_fails: 2
+  cooldown_time: 30
+
+general_settings:
+  master_key: sk-exiom-business-proxy
+  dangerously_permit_weak_or_unset_master_key: true
+  port: 4001

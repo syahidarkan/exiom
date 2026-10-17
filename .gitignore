@@ -1,0 +1,41 @@
+# Credentials — JANGAN PERNAH commit ini
+.env
+*.env.local
+*.env.production
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+
+# Database
+*.sqlite
+*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Temp / cache
+.cache/
+tmp/
+temp/
+
+# LiteLLM
+litellm.db
+.litellm/
