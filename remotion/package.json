@@ -1,0 +1,21 @@
+{
+  "name": "exiom-remotion-studio",
+  "version": "0.1.0",
+  "description": "Exiom content production pipeline — video, graphic, carousel via Remotion",
+  "scripts": {
+    "studio":  "remotion studio",
+    "render":  "remotion render",
+    "preview": "remotion preview"
+  },
+  "dependencies": {
+    "@remotion/cli":    "4.0.290",
+    "@remotion/player": "4.0.290",
+    "remotion":         "4.0.290",
+    "react":            "18.3.1",
+    "react-dom":        "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react":     "18.3.12",
+    "typescript":       "5.7.0"
+  }
+}

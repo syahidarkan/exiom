@@ -4,11 +4,17 @@
   "description": "Exiom AI & Software Consultant — Virtual Office Agent System",
   "type": "module",
   "scripts": {
-    "test:permissions": "tsx tests/test-write-permissions.ts",
-    "test:approval": "tsx tests/test-approval-cron.ts",
+    "test:permissions":    "tsx tests/test-write-permissions.ts",
+    "test:approval":       "tsx tests/test-approval-cron.ts",
+    "test:kenzie-adi":     "tsx tests/test-kenzie-adi-pipeline.ts",
+    "test:mia":            "tsx tests/test-mia-pipeline.ts",
+    "test:nela-ale-joce":  "tsx tests/test-nela-ale-joce-pipeline.ts",
+    "test:hugo":           "tsx tests/test-hugo-pipeline.ts",
     "cron:approval-check": "tsx src/jobs/approval-check.ts",
-    "cron:morning-summary": "tsx src/jobs/morning-summary.ts",
-    "dev:dashboard": "cd ../hermes-virtual-office && HERMES_BIN=/home/naca/.local/bin/hermes npm run dev"
+    "cron:morning-summary":"tsx src/jobs/morning-summary.ts",
+    "cron:hugo-recap":     "tsx src/jobs/hugo-daily-recap.ts",
+    "cron:mia-research":   "tsx src/jobs/mia-morning-research.ts",
+    "dev:dashboard":       "cd ../hermes-virtual-office && HERMES_BIN=/home/naca/.local/bin/hermes npm run dev"
   },
   "dependencies": {
     "dotenv": "^18.0.8",
