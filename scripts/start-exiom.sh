@@ -11,13 +11,21 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 LOG_DIR="$PROJECT_DIR/logs"
 mkdir -p "$LOG_DIR"
 
-# Load .env
+# Load .env — semua env var termasuk yang dipakai MCP servers
 if [ -f "$PROJECT_DIR/.env" ]; then
     set -a; source "$PROJECT_DIR/.env"; set +a
 else
     echo "❌ .env tidak ditemukan di $PROJECT_DIR"
     exit 1
 fi
+
+# Export explicit — supaya Hermes profiles bisa pakai ${GITHUB_TOKEN} dll di MCP config
+export GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+export RESEND_API_KEY="${RESEND_API_KEY:-}"
+export TIKTOK_CLIENT_KEY="${TIKTOK_CLIENT_KEY:-}"
+export TIKTOK_CLIENT_SECRET="${TIKTOK_CLIENT_SECRET:-}"
+export EXIOM_TELEGRAM_BOT_TOKEN="${EXIOM_TELEGRAM_BOT_TOKEN:-}"
+export EXIOM_LITELLM_MASTER_KEY="${EXIOM_LITELLM_MASTER_KEY:-}"
 
 # Load nvm + node 22
 export NVM_DIR="/home/naca/.nvm"
