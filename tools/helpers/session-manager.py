@@ -38,6 +38,53 @@ def get_playwright():
         sys.exit(1)
 
 
+STEALTH_ARGS = [
+    "--disable-blink-features=AutomationControlled",
+    "--disable-infobars",
+    "--start-maximized",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--no-sandbox",
+    "--disable-web-security",
+]
+
+# Platforms that block Playwright Chromium (use system Chrome instead)
+NEEDS_REAL_CHROME = {"youtube", "google", "reddit"}
+
+
+def _launch_browser(p, platform: str, headless: bool = False):
+    """Launch browser — system Chrome for Google-blocked platforms, Chromium otherwise."""
+    import shutil
+    chrome_path = shutil.which("google-chrome") or shutil.which("chromium-browser") or shutil.which("chromium")
+
+    if platform in NEEDS_REAL_CHROME and chrome_path:
+        print(f"  Using system Chrome: {chrome_path}")
+        browser = p.chromium.launch(
+            executable_path=chrome_path,
+            headless=headless,
+            args=STEALTH_ARGS,
+        )
+    else:
+        browser = p.chromium.launch(headless=headless, args=STEALTH_ARGS)
+
+    ctx = browser.new_context(
+        viewport={"width": 1440, "height": 900},
+        user_agent=(
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+        ),
+        locale="id-ID",
+        timezone_id="Asia/Jakarta",
+    )
+    # Mask automation fingerprint
+    ctx.add_init_script("""
+        Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+        window.chrome = { runtime: {} };
+        Object.defineProperty(navigator, 'plugins', { get: () => [1,2,3] });
+    """)
+    return browser, ctx
+
+
 def save_session(platform: str):
     """Open browser headed, let user log in manually, then save the session."""
     cfg = PLATFORMS.get(platform)
@@ -49,11 +96,12 @@ def save_session(platform: str):
     sync_playwright = get_playwright()
 
     print(f"Opening browser for {platform}...")
+    if platform in NEEDS_REAL_CHROME:
+        print("  (Using system Chrome — required for Google/Reddit login)")
     print("Log in manually, then press Enter here when done.")
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False, args=["--start-maximized"])
-        ctx = browser.new_context(viewport=None)
+        browser, ctx = _launch_browser(p, platform, headless=False)
         page = ctx.new_page()
         page.goto(cfg["url"])
 
@@ -124,7 +172,16 @@ def check_status(platform: str = None):
 
             cfg = PLATFORMS.get(name, {})
             try:
-                browser = p.chromium.launch(headless=True)
+                browser, ctx_base = _launch_browser(p, name, headless=True)
+                ctx_base.close()
+                browser.close()
+
+                import shutil
+                chrome_path = shutil.which("google-chrome") or shutil.which("chromium-browser")
+                if name in NEEDS_REAL_CHROME and chrome_path:
+                    browser = p.chromium.launch(executable_path=chrome_path, headless=True, args=STEALTH_ARGS)
+                else:
+                    browser = p.chromium.launch(headless=True, args=STEALTH_ARGS)
                 ctx = browser.new_context(storage_state=str(session_file))
                 page = ctx.new_page()
                 page.goto(cfg.get("check_url", f"https://{name}.com"), timeout=15000)
