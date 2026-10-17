@@ -1,0 +1,266 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "updated": "2026-10-17",
+    "description": "Registry of all tools available to Exiom agents"
+  },
+
+  "mia": {
+    "name": "Mia — Marketing Manager",
+    "tools": [
+      {
+        "id": "browser-use",
+        "type": "python-cli",
+        "install": "uv tool install browser-use",
+        "usage": "browser-use <<'PY'\n  # Python code to control browser\nPY",
+        "purpose": "Browser automation for scraping, forms, screenshots",
+        "repo": "https://github.com/browser-use/browser-use"
+      },
+      {
+        "id": "twscrape",
+        "type": "python-lib",
+        "install": "uv tool install twscrape",
+        "usage": "python3 tools/helpers/mia-trends.py tweets \"#keyword\" --limit 100",
+        "purpose": "Twitter/X trend scraping (no API key needed)",
+        "repo": "https://github.com/vladislav-morozov/twscrape"
+      },
+      {
+        "id": "searxng",
+        "type": "docker-service",
+        "url": "http://localhost:8080",
+        "start": "docker compose -f tools/docker-compose.tools.yml up searxng -d",
+        "usage": "python3 tools/helpers/mia-trends.py search \"keyword\" --engine http://localhost:8080",
+        "purpose": "Private, ad-free meta search engine",
+        "repo": "https://github.com/searxng/searxng"
+      },
+      {
+        "id": "pytrends",
+        "type": "python-lib",
+        "install": "pip install pytrends",
+        "usage": "python3 tools/helpers/mia-trends.py trends \"web development\" --geo ID",
+        "purpose": "Google Trends data (free, unofficial)"
+      }
+    ]
+  },
+
+  "joce": {
+    "name": "Joce — Client Acquisition",
+    "tools": [
+      {
+        "id": "google-maps-scraper",
+        "type": "go-binary",
+        "binary": "~/.local/bin/google-maps-scraper",
+        "usage": "python3 tools/helpers/joce-leads.py maps \"digital agency Jakarta\" --limit 20 --out leads.json",
+        "purpose": "B2B lead scraping from Google Maps",
+        "repo": "https://github.com/gosom/google-maps-scraper"
+      },
+      {
+        "id": "puppeteer-extra-stealth",
+        "type": "node-package",
+        "install": "npm install puppeteer-extra puppeteer-extra-plugin-stealth puppeteer",
+        "dir": "tools/node/joce-crawler/",
+        "purpose": "Stealth web crawler for lead pages",
+        "repo": "https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth"
+      },
+      {
+        "id": "check-email",
+        "type": "docker-service",
+        "url": "http://localhost:8989",
+        "start": "docker compose -f tools/docker-compose.tools.yml up check-email -d",
+        "usage": "python3 tools/helpers/joce-leads.py validate-email info@example.com",
+        "purpose": "Email deliverability validator (SMTP check)",
+        "repo": "https://github.com/AmauryEp/check-email"
+      }
+    ]
+  },
+
+  "deril": {
+    "name": "Deril — Editor / Content",
+    "tools": [
+      {
+        "id": "remotion",
+        "type": "node-framework",
+        "dir": "remotion/",
+        "usage": "cd remotion && npm run render -- --composition=Intro --output=out/intro.mp4",
+        "purpose": "Code-based video rendering (React)",
+        "repo": "https://github.com/remotion-dev/remotion"
+      },
+      {
+        "id": "edge-tts",
+        "type": "python-cli",
+        "install": "uv tool install edge-tts",
+        "usage": "bash tools/helpers/deril-tts.sh tts \"Halo selamat datang\" --voice id-ID-ArdiNeural --out vo.mp3",
+        "purpose": "Free Microsoft Edge TTS — Indonesian & English voices",
+        "repo": "https://github.com/rany2/edge-tts",
+        "voices": {
+          "id-male": "id-ID-ArdiNeural",
+          "id-female": "id-ID-GadisNeural",
+          "en-male": "en-US-GuyNeural",
+          "en-female": "en-US-JennyNeural"
+        }
+      },
+      {
+        "id": "pexels-python",
+        "type": "python-lib",
+        "install": "pip install pexels-python",
+        "usage": "bash tools/helpers/deril-tts.sh pexels \"modern office\" --type video",
+        "env_required": ["PEXELS_API_KEY"],
+        "purpose": "Free stock photos and videos",
+        "repo": "https://github.com/pexels/pexels-python"
+      },
+      {
+        "id": "yt-dlp",
+        "type": "python-cli",
+        "install": "uv tool install yt-dlp",
+        "usage": "yt-dlp -f 'bestvideo[height<=1080]' <url> -o 'assets/%(title)s.%(ext)s'",
+        "purpose": "Download reference / B-roll video content"
+      }
+    ]
+  },
+
+  "adi": {
+    "name": "Adi — Developer",
+    "tools": [
+      {
+        "id": "single-file-cli",
+        "type": "node-cli",
+        "install": "npm install -g single-file-cli",
+        "usage": "single-file --browser-executable-path=$(which google-chrome) https://target.com page.html",
+        "purpose": "Full-page archiver / UI cloner (single HTML file)",
+        "repo": "https://github.com/gildas-lormeau/SingleFile"
+      },
+      {
+        "id": "shadcn-ui",
+        "type": "npx",
+        "usage": "npx shadcn@latest add button card dialog form input",
+        "purpose": "Copy-paste UI component library (Tailwind + Radix)",
+        "repo": "https://github.com/shadcn-ui/ui",
+        "note": "Run inside the Next.js project folder — no global install"
+      },
+      {
+        "id": "playwright",
+        "type": "python-lib",
+        "install": "uv tool install playwright && python3 -m playwright install chromium",
+        "usage": "python3 -m playwright codegen https://target.com",
+        "purpose": "Browser automation for E2E testing and QA"
+      }
+    ]
+  },
+
+  "gagah": {
+    "name": "Gagah — SEO Researcher",
+    "tools": [
+      {
+        "id": "praw",
+        "type": "python-lib",
+        "install": "pip install praw",
+        "usage": "python3 tools/helpers/gagah-seo.py reddit \"web development indonesia\" --limit 50",
+        "env_required": ["REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET"],
+        "purpose": "Reddit API — forum research, content ideas, pain points",
+        "repo": "https://github.com/praw-dev/praw"
+      },
+      {
+        "id": "searchconsole",
+        "type": "python-lib",
+        "install": "pip install searchconsole",
+        "usage": "python3 tools/helpers/gagah-seo.py gsc --site https://exiom.id --days 28",
+        "env_required": ["GDRIVE_SERVICE_ACCOUNT_PATH"],
+        "purpose": "Google Search Console — impressions, CTR, keyword positions",
+        "repo": "https://github.com/casperbakker/search-console-python"
+      },
+      {
+        "id": "pytrends",
+        "type": "python-lib",
+        "install": "pip install pytrends",
+        "usage": "python3 tools/helpers/gagah-seo.py trends \"jasa website\" --geo ID",
+        "purpose": "Google Trends — keyword demand over time"
+      }
+    ]
+  },
+
+  "nela": {
+    "name": "Nela — PR Manager",
+    "tools": [
+      {
+        "id": "rss-bridge",
+        "type": "docker-service",
+        "url": "http://localhost:3100",
+        "start": "docker compose -f tools/docker-compose.tools.yml up rss-bridge -d",
+        "purpose": "RSS feeds from sites that don't offer them (Instagram, Twitter, Google News, etc.)",
+        "repo": "https://github.com/RSS-Bridge/rss-bridge"
+      },
+      {
+        "id": "baileys-whatsapp",
+        "type": "node-lib",
+        "dir": "tools/node/baileys-wa/",
+        "usage": "node tools/helpers/ale-whatsapp.js qr  # first time link\nnode tools/helpers/ale-whatsapp.js send 628xxx 'Pesan dari Nela'",
+        "purpose": "WhatsApp automation (shared with Ale)",
+        "repo": "https://github.com/WhiskeySockets/Baileys"
+      }
+    ]
+  },
+
+  "ale": {
+    "name": "Ale — Client Relations",
+    "tools": [
+      {
+        "id": "baileys-whatsapp",
+        "type": "node-lib",
+        "dir": "tools/node/baileys-wa/",
+        "usage": "node tools/helpers/ale-whatsapp.js send 628xxx 'Halo, ini Ale dari Exiom'",
+        "purpose": "WhatsApp — follow-up leads, client comms",
+        "note": "WAJIB approval Owner sebelum kirim ke nomor asli. Gunakan nomor test selama validasi.",
+        "repo": "https://github.com/WhiskeySockets/Baileys"
+      },
+      {
+        "id": "rss-bridge",
+        "type": "docker-service",
+        "url": "http://localhost:3100",
+        "start": "docker compose -f tools/docker-compose.tools.yml up rss-bridge -d",
+        "purpose": "Monitor brand mentions, competitor news via RSS"
+      }
+    ]
+  },
+
+  "kenzie": {
+    "name": "Kenzie — IT Manager",
+    "tools": [
+      {
+        "id": "uptime-kuma",
+        "type": "docker-service",
+        "url": "http://localhost:3001",
+        "start": "docker compose -f tools/docker-compose.tools.yml up uptime-kuma -d",
+        "purpose": "Self-hosted uptime monitor for all Exiom services",
+        "repo": "https://github.com/louislam/uptime-kuma"
+      },
+      {
+        "id": "psutil",
+        "type": "python-lib",
+        "install": "pip install psutil",
+        "usage": "python3 -c \"import psutil; print(psutil.cpu_percent(), psutil.virtual_memory().percent)\"",
+        "purpose": "System resource monitoring"
+      }
+    ]
+  },
+
+  "hugo": {
+    "name": "Hugo — Finance",
+    "tools": [
+      {
+        "id": "typst",
+        "type": "binary",
+        "binary": "~/.local/bin/typst",
+        "install": "See tools/install-tools.sh --agent hugo",
+        "usage": "bash tools/helpers/hugo-invoice.sh generate --client 'PT ABC' --amount 5000000 --out invoice.pdf",
+        "purpose": "PDF invoice, report, and document generation",
+        "repo": "https://github.com/typst/typst"
+      },
+      {
+        "id": "uptime-kuma",
+        "type": "docker-service",
+        "url": "http://localhost:3001",
+        "purpose": "Monitor availability of Exiom billing/finance endpoints"
+      }
+    ]
+  }
+}

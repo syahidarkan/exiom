@@ -1,0 +1,61 @@
+services:
+
+  # ── Mia: Private Search Engine (SearXNG) ──────────────────────────────────
+  searxng:
+    image: searxng/searxng:latest
+    container_name: exiom-searxng
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./searxng-config:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+      - SEARXNG_SECRET=exiom-searxng-secret-change-me
+    labels:
+      - "exiom.agent=mia"
+      - "exiom.tool=search"
+
+  # ── Nela & Ale: RSS Bridge ────────────────────────────────────────────────
+  rss-bridge:
+    image: rssbridge/rss-bridge:latest
+    container_name: exiom-rss-bridge
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3100:80"
+    volumes:
+      - ./rss-bridge-config:/config:rw
+    labels:
+      - "exiom.agent=nela,ale"
+      - "exiom.tool=rss-alerts"
+
+  # ── Kenzie & Hugo: Uptime Monitor ─────────────────────────────────────────
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: exiom-uptime-kuma
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    labels:
+      - "exiom.agent=kenzie,hugo"
+      - "exiom.tool=monitoring"
+
+  # ── Joce: check-email API (Rust-based reachability validator) ─────────────
+  check-email:
+    image: reacherhq/backend:latest
+    container_name: exiom-check-email
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8989:8080"
+    environment:
+      - RCH_FROM_EMAIL=noreply@exiom.id
+      - RCH_SMTP_TIMEOUT=30
+      - RUST_LOG=warn
+    labels:
+      - "exiom.agent=joce"
+      - "exiom.tool=email-validator"
+
+volumes:
+  uptime-kuma-data:
