@@ -100,13 +100,13 @@
         }
       },
       {
-        "id": "pexels-python",
-        "type": "python-lib",
-        "install": "pip install pexels-python",
-        "usage": "bash tools/helpers/deril-tts.sh pexels \"modern office\" --type video",
-        "env_required": ["PEXELS_API_KEY"],
-        "purpose": "Free stock photos and videos",
-        "repo": "https://github.com/pexels/pexels-python"
+        "id": "pixabay",
+        "type": "http-api",
+        "usage": "bash tools/helpers/deril-tts.sh pixabay \"modern office\" --type video",
+        "env_required": ["PIXABAY_API_KEY"],
+        "purpose": "Free stock photos and videos — no attribution required, commercial use OK",
+        "docs": "https://pixabay.com/api/docs/",
+        "note": "API key sudah tersimpan di .env"
       },
       {
         "id": "yt-dlp",
