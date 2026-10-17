@@ -1,0 +1,13 @@
+use_default_settings: true
+server:
+  secret_key: "exiom-searxng-secret-2026"
+  limiter: false
+  image_proxy: true
+search:
+  safe_search: 0
+  default_lang: "id-ID"
+  formats:
+    - html
+    - json
+outgoing:
+  request_timeout: 10.0
