@@ -1,0 +1,22 @@
+{
+  "name": "exiom-virtual-office-agent",
+  "version": "0.1.0",
+  "description": "Exiom AI & Software Consultant — Virtual Office Agent System",
+  "type": "module",
+  "scripts": {
+    "test:permissions": "tsx tests/test-write-permissions.ts",
+    "test:approval": "tsx tests/test-approval-cron.ts",
+    "cron:approval-check": "tsx src/jobs/approval-check.ts",
+    "cron:morning-summary": "tsx src/jobs/morning-summary.ts",
+    "dev:dashboard": "cd ../hermes-virtual-office && HERMES_BIN=/home/naca/.local/bin/hermes npm run dev"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
