@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>EXIOM CONSULTANT — Master Brand Guidelines & Design System</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 16mm 16mm 18mm 16mm;
+    background-color: #FAFAFA;
+    @bottom-right {
+      content: "EXIOM CONSULTANT — BRAND MANUAL // " counter(page);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      font-size: 7pt;
+      font-weight: 700;
+      color: #8E8E93;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1C1C1E;
+    background-color: #FAFAFA;
+    line-height: 1.5;
+    font-size: 8.5pt;
+  }
+
+  .manual-container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  /* CHAPTER BREAKS */
+  .chapter-page {
+    page-break-before: always;
+    padding-top: 10px;
+    margin-bottom: 24px;
+  }
+  .chapter-page:first-of-type {
+    page-break-before: avoid;
+    padding-top: 0;
+  }
+
+  /* COVER STYLING */
+  .cover-block {
+    background-color: #1C1C1E;
+    color: #FAFAFA;
+    padding: 48px 36px 36px 36px;
+    border-bottom: 4px solid #FF5A1F;
+    border-radius: 4px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .cover-eyebrow {
+    font-family: monospace;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #FF5A1F;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .cover-title {
+    font-size: 32pt;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    margin: 0 0 6px 0;
+    line-height: 1.05;
+  }
+  .cover-subtitle {
+    font-size: 13pt;
+    color: #C7C7CC;
+    font-weight: 400;
+    margin: 0 0 24px 0;
+  }
+  .cover-meta {
+    border-top: 1px solid #2C2C2E;
+    padding-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 7.5pt;
+    color: #8E8E93;
+  }
+
+  /* HEADINGS */
+  .chapter-number {
+    font-family: monospace;
+    color: #FF5A1F;
+    font-size: 8pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 2px;
+  }
+  .chapter-title {
+    font-size: 15pt;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #1C1C1E;
+    margin: 0 0 10px 0;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid #1C1C1E;
+  }
+  .sub-title {
+    font-size: 10.5pt;
+    font-weight: 800;
+    color: #1C1C1E;
+    margin: 14px 0 6px 0;
+    letter-spacing: -0.01em;
+  }
+
+  /* LAYOUT GRIDS */
+  .grid-2 { display: flex; gap: 14px; margin-bottom: 12px; }
+  .grid-3 { display: flex; gap: 12px; margin-bottom: 12px; }
+  .grid-4 { display: flex; gap: 10px; margin-bottom: 12px; }
+  .col { flex: 1; }
+
+  /* CARDS & BOXES */
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E5E5EA;
+    border-radius: 3px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .card-dark {
+    background: #1C1C1E;
+    color: #FAFAFA;
+    border: 1px solid #2C2C2E;
+  }
+  .card-dark p, .card-dark td { color: #A1A1A6; }
+  
+  .badge {
+    display: inline-block;
+    padding: 2px 6px;
+    font-size: 6.8pt;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    background-color: #1C1C1E;
+    color: #FAFAFA;
+    margin-bottom: 6px;
+  }
+  .badge-orange { background-color: #FF5A1F; color: #FFFFFF; }
+
+  .logo-box {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5EA;
+    border-radius: 3px;
+    padding: 18px 10px;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .logo-box.dark {
+    background-color: #1C1C1E;
+    border: 1px solid #2C2C2E;
+  }
+
+  .caption {
+    font-size: 7.2pt;
+    color: #636366;
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+
+  /* TABLES */
+  table.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.8pt;
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
+  table.doc-table th {
+    background: #1C1C1E;
+    color: #FAFAFA;
+    text-align: left;
+    padding: 6px 10px;
+    font-weight: 700;
+    font-family: monospace;
+    font-size: 7pt;
+    letter-spacing: 0.05em;
+  }
+  table.doc-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #E5E5EA;
+    background: #FFFFFF;
+    vertical-align: top;
+  }
+
+  /* CODE & SPEC */
+  .spec-text {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 7.5pt;
+    color: #48484A;
+  }
+  .spec-highlight {
+    color: #FF5A1F;
+    font-weight: 700;
+  }
+
+  /* SLIDE & BROWSER PREVIEWS */
+  .slide-container {
+    border: 1px solid #D1D1D6;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .slide-head {
+    background: #E5E5EA;
+    padding: 4px 10px;
+    font-size: 6.8pt;
+    font-family: monospace;
+    color: #636366;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+  }
+  .browser-container {
+    border: 1px solid #D1D1D6;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .browser-bar {
+    background: #E5E5EA;
+    padding: 4px 10px;
+    font-size: 6.5pt;
+    font-family: monospace;
+    color: #636366;
+    border-bottom: 1px solid #D1D1D6;
+  }
+</style>
+</head>
+<body>
+
+<div class="manual-container">
+
+  <!-- ==================== HALAMAN 1: COVER & EXECUTIVE SUMMARY ==================== -->
+  <div class="chapter-page">
+    <div class="cover-block">
+      <div class="cover-eyebrow">Enterprise Identity & Execution System // v2.0</div>
+      <div class="cover-title">EXIOM CONSULTANT</div>
+      <div class="cover-subtitle">Master Brand Architecture, Visual Identity & Governance Manual</div>
+      <div class="cover-meta">
+        <div>CORE POSITIONING: APPLIED MACHINE INTELLIGENCE PRACTICE</div>
+        <div>TAGLINE: "ENGINEERED FOR INTELLIGENCE."</div>
+        <div>DOMAIN: EXIOM.ID</div>
+      </div>
+    </div>
+
+    <div class="chapter-number">Bab 01 // Prinsip Strategis</div>
+    <div class="chapter-title">Arsitektur Brand & Positioning Pasar</div>
+    <p>
+      EXIOM Consultant diposisikan sebagai <strong>firma konsultan teknologi papan atas</strong> (setara dengan standar institusional PwC, Deloitte, Accenture, dan Thoughtworks). Exiom tidak memposisikan diri sebagai vendor digital retail biasa, agensi kasual, atau startup AI yang sarat klaim berlebihan (<em>hype-driven</em>).
+    </p>
+
+    <div class="grid-2">
+      <div class="col card">
+        <span class="badge badge-orange">DNA Pembeda Inti</span>
+        <div style="font-weight: 800; font-size: 9pt; margin-bottom: 4px;">"AI Integrated, Not Bolted On"</div>
+        <p style="font-size: 7.8pt; color: #48484A;">
+          Bukan memasang chatbot publik generik di permukaan aplikasi, melainkan merekayasa layer kecerdasan komputasi (*applied intelligence*) langsung ke dalam arsitektur kernel, pipeline database, dan sistem transaksi inti klien.
+        </p>
+      </div>
+      <div class="col card">
+        <span class="badge">Target Pasar & Standar Tata Kelola</span>
+        <div style="font-weight: 800; font-size: 9pt; margin-bottom: 4px;">Enterprise-First Infrastructure</div>
+        <p style="font-size: 7.8pt; color: #48484A;">
+          Seluruh komunikasi visual dan tata bahasa dirancang untuk berbicara kepada pengambil keputusan tertinggi: <em>Chief Technology Officer (CTO), Chief Information Officer (CIO), VP of Engineering</em>, dan jajaran dewan direksi institusi publik/swasta.
+        </p>
+      </div>
+    </div>
+
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Atribut Brand</th>
+          <th>Prinsip yang Diterapkan (The Exiom Standard)</th>
+          <th>Prinsip yang Ditolak (Anti-Pattern)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tone of Voice</strong></td>
+          <td>Presisi, teknikal, tenang, berwibawa, deterministik, terukur oleh ROI.</td>
+          <td>Funky, bombastis, lelucon kasual, menjanjikan "keajaiban otomatis".</td>
+        </tr>
+        <tr>
+          <td><strong>Estetika Visual</strong></td>
+          <td>Gaya tipografi korporasi Swiss, monokromatik berbobot, aksen warna fungsional tunggal.</td>
+          <td>Gradien neon ungu-biru, ilustrasi robot 3D generik, bola sinapsis bercahaya.</td>
+        </tr>
+        <tr>
+          <td><strong>Metodologi Komunikasi</strong></td>
+          <td>Diagram topologi nyata, benchmarking latensi, tata kelola enkripsi & SLA.</td>
+          <td>Istilah AI Slop ("Supercharge your workflow", "Unlock AI magic").</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== HALAMAN 2: MASTER LOGO SYSTEM (1 ORANGE STROKE) ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 02 // Anatomi Logo Primer</div>
+    <div class="chapter-title">Spesifikasi Wordmark & Aturan Garis Tunggal Oranye</div>
+    <p>
+      Logo primer EXIOM Consultant adalah <strong>Wordmark Geometris All-Caps</strong>. Diferensiasi arsitektural diwujudkan secara subtil dan presisi: dari dua garis diagonal yang menyusun huruf X, <strong>hanya 1 garis diagonal yang berwarna Signal Orange (#FF5A1F)</strong>, sementara garis diagonal lainnya dan seluruh huruf lainnya tetap monokrom.
+    </p>
+
+    <div class="grid-2">
+      <!-- Light Mode Wordmark -->
+      <div class="col card">
+        <span class="badge">Varian Primer — Light Mode (Latar Putih/Netral)</span>
+        <div class="logo-box">
+          <svg width="240" height="46" viewBox="0 0 240 46">
+            <!-- E (Charcoal) -->
+            <path d="M14 10 H32 V15 H20 V20 H30 V25 H20 V30 H32 V35 H14 Z" fill="#1C1C1E"/>
+            <!-- X: Diagonal 1 (Top-Left to Bottom-Right) in Deep Charcoal -->
+            <polygon points="38,10 45,10 65,35 58,35" fill="#1C1C1E"/>
+            <!-- X: Diagonal 2 (Top-Right to Bottom-Left) in SIGNAL ORANGE ONLY -->
+            <polygon points="65,10 58,10 38,35 45,35" fill="#FF5A1F"/>
+            <!-- I (Charcoal) -->
+            <rect x="72" y="10" width="6.5" height="25" fill="#1C1C1E"/>
+            <!-- O (Charcoal) -->
+            <path d="M86 22.5 C86 15.5 91.5 10 99 10 C106.5 10 112 15.5 112 22.5 C112 29.5 106.5 35 99 35 C91.5 35 86 29.5 86 22.5 Z M92.5 22.5 C92.5 26.5 95.5 29.5 99 29.5 C102.5 29.5 105.5 26.5 105.5 22.5 C105.5 18.5 102.5 15.5 99 15.5 C95.5 15.5 92.5 18.5 92.5 22.5 Z" fill="#1C1C1E"/>
+            <!-- M (Charcoal) -->
+            <path d="M120 10 H126.5 L133 24 L139.5 10 H146 V35 H140 V20.5 L134.5 31.5 H131.5 L126 20.5 V35 H120 Z" fill="#1C1C1E"/>
+          </svg>
+        </div>
+        <div class="caption">
+          <strong>Aplikasi:</strong> Kop surat resmi, faktur, dokumen proposal A4, nota teknis, dan web tampilan terang.
+        </div>
+      </div>
+
+      <!-- Dark Mode Wordmark -->
+      <div class="col card">
+        <span class="badge badge-charcoal">Varian Primer — Dark Mode (Latar Charcoal)</span>
+        <div class="logo-box dark">
+          <svg width="240" height="46" viewBox="0 0 240 46">
+            <!-- E (White) -->
+            <path d="M14 10 H32 V15 H20 V20 H30 V25 H20 V30 H32 V35 H14 Z" fill="#FAFAFA"/>
+            <!-- X: Diagonal 1 in Pure White -->
+            <polygon points="38,10 45,10 65,35 58,35" fill="#FAFAFA"/>
+            <!-- X: Diagonal 2 in SIGNAL ORANGE ONLY -->
+            <polygon points="65,10 58,10 38,35 45,35" fill="#FF5A1F"/>
+            <!-- I (White) -->
+            <rect x="72" y="10" width="6.5" height="25" fill="#FAFAFA"/>
+            <!-- O (White) -->
+            <path d="M86 22.5 C86 15.5 91.5 10 99 10 C106.5 10 112 15.5 112 22.5 C112 29.5 106.5 35 99 35 C91.5 35 86 29.5 86 22.5 Z M92.5 22.5 C92.5 26.5 95.5 29.5 99 29.5 C102.5 29.5 105.5 26.5 105.5 22.5 C105.5 18.5 102.5 15.5 99 15.5 C95.5 15.5 92.5 18.5 92.5 22.5 Z" fill="#FAFAFA"/>
+            <!-- M (White) -->
+            <path d="M120 10 H126.5 L133 24 L139.5 10 H146 V35 H140 V20.5 L134.5 31.5 H131.5 L126 20.5 V35 H120 Z" fill="#FAFAFA"/>
+          </svg>
+        </div>
+        <div class="caption">
+          <strong>Aplikasi:</strong> Slide cover pitch deck, hero website exiom.id, kartu nama eksekutif, dan banner media sosial.
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">Aturan Ruang Bebas (Clear Space) & Ukuran Minimum</div>
+    <div class="grid-2">
+      <div class="col card">
+        <span class="badge">Clear Space Rule (X-Width Exclusion)</span>
+        <p style="font-size: 7.8pt; color: #48484A;">
+          Ruang bebas di sekeliling logo diukur berdasarkan <strong>lebar huruf kapital 'X' ($1X$)</strong>. Tidak boleh ada elemen tipografi, garis tepi dokumen, atau ikon lain yang masuk ke dalam zona steril ini.
+        </p>
+        <div class="spec-text">Zona Isolasi: Minimal 1.0X di sisi Atas, Bawah, Kiri, dan Kanan.</div>
+      </div>
+      <div class="col card">
+        <span class="badge">Minimum Size Threshold</span>
+        <p style="font-size: 7.8pt; color: #48484A;">
+          Untuk menjaga legibilitas garis silang huruf X:
+        </p>
+        <div class="spec-text">
+          &bull; Media Cetak (Print): Lebar minimal <strong>28 mm</strong>.<br>
+          &bull; Media Layar (Digital): Lebar minimal <strong>110 pixel</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">Larangan Mutlak Logo (Negative Rules)</div>
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Tindakan Terlarang</th>
+          <th>Dampak Negatif</th>
+          <th>Koreksi Baku</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mewarnai kedua garis X menjadi oranye penuh.</td>
+          <td>Menghilangkan konsep persimpangan (*junction*) arsitektur.</td>
+          <td>Hanya 1 garis diagonal yang berwarna Signal Orange.</td>
+        </tr>
+        <tr>
+          <td>Menambahkan drop shadow, glow, atau bevel pada huruf.</td>
+          <td>Tampak murah seperti template grafis amatir.</td>
+          <td>Pertahankan 100% flat vector geometris tanpa gradasi.</td>
+        </tr>
+        <tr>
+          <td>Mengubah orientasi garis oranye menjadi huruf miring (*italic*).</td>
+          <td>Merusak proporsi kisi tipografi standar.</td>
+          <td>Huruf X harus tetap berdiri tegak 100% simetris.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== HALAMAN 3: SISTEM FAVICON & APP ICON ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 03 // Sistem Monogram Digital</div>
+    <div class="chapter-title">Favicon & App Icon: The Monolithic 'E'</div>
+    <p>
+      Kata 5 huruf "EXIOM" kehilangan ketajamannya saat diperkecil ke ukuran piksel ekstrem (16x16 atau 32x32 px di tab browser). Karena itu, identitas digital Exiom menggunakan <strong>The Monolithic 'E'</strong>: inisial huruf E tebal berkontras tinggi dengan kubus data Signal Orange pada palang horizontal tengah.
+    </p>
+
+    <div class="grid-2">
+      <!-- Dark Favicon -->
+      <div class="col card" style="text-align: center;">
+        <span class="badge badge-charcoal">The Monolithic 'E' — Versi Gelap (Default)</span>
+        <div class="logo-box dark" style="padding: 24px;">
+          <svg width="72" height="72" viewBox="0 0 80 80">
+            <rect width="80" height="80" rx="16" fill="#1C1C1E"/>
+            <path d="M22 21 H56 V29 H33 V36 H50 V43 H33 V51 H56 V59 H22 Z" fill="#FAFAFA"/>
+            <rect x="52" y="36" width="7" height="7" rx="0.5" fill="#FF5A1F"/>
+          </svg>
+        </div>
+        <div style="font-weight: 800; font-size: 8.5pt;">Browser Favicon & iOS App Icon</div>
+        <div class="caption">Latar Charcoal #1C1C1E, huruf E putih, dengan beacon kubus Signal Orange #FF5A1F.</div>
+      </div>
+
+      <!-- Light Favicon -->
+      <div class="col card" style="text-align: center;">
+        <span class="badge">The Monolithic 'E' — Versi Terang</span>
+        <div class="logo-box" style="padding: 24px;">
+          <svg width="72" height="72" viewBox="0 0 80 80">
+            <rect width="80" height="80" rx="16" fill="#FFFFFF" stroke="#E5E5EA" stroke-width="2.5"/>
+            <path d="M22 21 H56 V29 H33 V36 H50 V43 H33 V51 H56 V59 H22 Z" fill="#1C1C1E"/>
+            <rect x="52" y="36" width="7" height="7" rx="0.5" fill="#FF5A1F"/>
+          </svg>
+        </div>
+        <div style="font-weight: 800; font-size: 8.5pt;">Safari Light & PWA Alternate Icon</div>
+        <div class="caption">Kanvas putih murni #FFFFFF dengan hairline border, huruf E Charcoal, kubus Signal Orange.</div>
+      </div>
+    </div>
+
+    <div class="sub-title">Matriks Ukuran Ekspor Aset Digital (Export Matrix)</div>
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Ukuran (Pixel)</th>
+          <th>Format Berkas</th>
+          <th>Penempatan Touchpoint</th>
+          <th>Varian yang Digunakan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>16 &times; 16 px</strong></td>
+          <td><code>.ico</code> / <code>.png</code></td>
+          <td>Browser Tab Bookmarklet (Standar Chrome, Edge)</td>
+          <td>Dark Version (Solid Contrast)</td>
+        </tr>
+        <tr>
+          <td><strong>32 &times; 32 px</strong></td>
+          <td><code>.png</code></td>
+          <td>Retina Browser Tab & Desktop Shortcuts</td>
+          <td>Dark Version</td>
+        </tr>
+        <tr>
+          <td><strong>180 &times; 180 px</strong></td>
+          <td><code>.png</code></td>
+          <td>Apple Touch Icon (Home Screen iOS Web Clip)</td>
+          <td>Dark Version (Corner Radius diterapkan otomatis oleh iOS)</td>
+        </tr>
+        <tr>
+          <td><strong>512 &times; 512 px</strong></td>
+          <td><code>.png</code> / <code>.svg</code></td>
+          <td>Android Chrome PWA Splash & Google Workspace Avatar</td>
+          <td>Dark & Light Version</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== HALAMAN 4: SISTEM WARNA KORPORAT ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 04 // Standar Kromatik</div>
+    <div class="chapter-title">Sistem Warna Korporat & Aturan 60 - 35 - 5</div>
+    <p>
+      Kredibilitas enterprise dibangun dari pengendalian diri (*restraint*). Signal Orange (#FF5A1F) adalah warna fungsional bernilai tinggi: ia hanya bekerja secara optimal jika digunakan <strong>maksimal 5%</strong> di keseluruhan tampilan.
+    </p>
+
+    <div class="grid-3">
+      <!-- Charcoal -->
+      <div class="col card" style="border-top: 3px solid #1C1C1E;">
+        <span class="badge badge-charcoal">Primary Brand Color</span>
+        <div style="font-weight: 900; font-size: 10pt; margin-top: 4px;">Deep Charcoal</div>
+        <div class="spec-text spec-highlight">#1C1C1E</div>
+        <div class="spec-text" style="margin-top: 4px;">
+          RGB: 28, 28, 30<br>
+          CMYK: 70, 65, 60, 80<br>
+          Pantone: Black 7 C
+        </div>
+        <p style="font-size: 7.2pt; color: #636366; margin-top: 6px;">
+          <strong>Rasio: 60%.</strong> Digunakan untuk teks editorial, judul utama, kartu arsitektur, dan background eksekutif dark mode.
+        </p>
+      </div>
+
+      <!-- Neutral -->
+      <div class="col card" style="border-top: 3px solid #D1D1D6;">
+        <span class="badge" style="background:#E5E5EA; color:#1C1C1E;">Document Canvas</span>
+        <div style="font-weight: 900; font-size: 10pt; margin-top: 4px;">Pure Neutral</div>
+        <div class="spec-text spec-highlight">#FAFAFA</div>
+        <div class="spec-text" style="margin-top: 4px;">
+          RGB: 250, 250, 250<br>
+          CMYK: 1, 1, 1, 0<br>
+          Pantone: Cool Gray 1 C
+        </div>
+        <p style="font-size: 7.2pt; color: #636366; margin-top: 6px;">
+          <strong>Rasio: 35%.</strong> Ruang putih (whitespace), latar belakang proposal teknis A4, kertas kop surat resmi, dan formulir audit.
+        </p>
+      </div>
+
+      <!-- Signal Orange -->
+      <div class="col card" style="border-top: 3px solid #FF5A1F;">
+        <span class="badge badge-orange">Functional Accent</span>
+        <div style="font-weight: 900; font-size: 10pt; margin-top: 4px;">Signal Orange</div>
+        <div class="spec-text spec-highlight" style="color:#FF5A1F;">#FF5A1F</div>
+        <div class="spec-text" style="margin-top: 4px;">
+          RGB: 255, 90, 31<br>
+          CMYK: 0, 75, 95, 0<br>
+          Pantone: 1655 C
+        </div>
+        <p style="font-size: 7.2pt; color: #636366; margin-top: 6px;">
+          <strong>Rasio: &le; 5%.</strong> Eksklusif untuk satu garis X logo, kubus favicon, tombol CTA primer ("Consult an Architect"), dan kurva ROI.
+        </p>
+      </div>
+    </div>
+
+    <div class="sub-title">Aksesibilitas & Kontras Rasio (WCAG 2.1 Compliance)</div>
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Kombinasi Latar vs Teks</th>
+          <th>Rasio Kontras</th>
+          <th>Tingkat Kepatuhan WCAG</th>
+          <th>Status Penggunaan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Deep Charcoal (#1C1C1E) di atas Pure Neutral (#FAFAFA)</td>
+          <td><strong>16.2 : 1</strong></td>
+          <td>AAA Compliant (Sangat Tinggi)</td>
+          <td>Standar Utama Dokumen & Web Editorial</td>
+        </tr>
+        <tr>
+          <td>Pure White (#FAFAFA) di atas Deep Charcoal (#1C1C1E)</td>
+          <td><strong>16.2 : 1</strong></td>
+          <td>AAA Compliant (Sangat Tinggi)</td>
+          <td>Standar Slide Deck & Dark Hero Section</td>
+        </tr>
+        <tr>
+          <td>Signal Orange (#FF5A1F) di atas Deep Charcoal (#1C1C1E)</td>
+          <td><strong>4.8 : 1</strong></td>
+          <td>AA Compliant (Large Text & UI Components)</td>
+          <td>Tombol CTA, Indikator Sistem Aktif, Garis X Logo</td>
+        </tr>
+        <tr>
+          <td>Signal Orange (#FF5A1F) di atas Pure White (#FAFAFA)</td>
+          <td><strong>2.7 : 1</strong></td>
+          <td>Gagal untuk Teks Paragraf Panjang</td>
+          <td><strong>DILARANG</strong> untuk body text; hanya untuk tombol solid dengan teks putih</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== HALAMAN 5: SISTEM TIPOGRAFI & HIRARKI ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 05 // Arsitektur Tipografi</div>
+    <div class="chapter-title">Tipografi Geometris & Hirarki Komposisi</div>
+    <p>
+      Sistem tipografi Exiom mencerminkan presisi rekayasa Swiss. Heading menggunakan sans-serif geometris berkepribadian arsitektural kuat, didukung oleh body text neo-grotesque dengan tingkat keterbacaan (*legibility*) maksimal pada dokumen korporasi tebal.
+    </p>
+
+    <div class="grid-2">
+      <div class="col card">
+        <span class="badge">Primary Display & Headings</span>
+        <div style="font-weight: 800; font-size: 14pt; margin: 4px 0;">Neue Montreal / Space Grotesk</div>
+        <div class="spec-text">Weights: Bold (700) & Heavy (800)</div>
+        <p style="font-size: 7.5pt; color: #48484A; margin-top: 6px;">
+          Dipakai untuk judul proposal, headline slide pitch deck, cover laporan whitepaper, dan wordmark utama. Memiliki sudut siku geometris yang tegas dan formal.
+        </p>
+      </div>
+      <div class="col card">
+        <span class="badge">Body Text & Data Systems</span>
+        <div style="font-weight: 800; font-size: 14pt; margin: 4px 0;">Inter / IBM Plex Sans</div>
+        <div class="spec-text">Weights: Regular (400), Medium (500), Monospace</div>
+        <p style="font-size: 7.5pt; color: #48484A; margin-top: 6px;">
+          Dipakai untuk paragraf isi, klausul kontrak, tabel perbandingan arsitektur, dan metadata teknis. Varian Monospace digunakan untuk kode referensi dokumen.
+        </p>
+      </div>
+    </div>
+
+    <div class="sub-title">Spesimen Hirarki Tipografi Resmi</div>
+    <div class="card" style="padding: 16px;">
+      <div class="spec-text" style="color:#FF5A1F; margin-bottom: 2px;">DISPLAY H1 // 26pt Neue Montreal Bold (-0.03em letter-spacing)</div>
+      <div style="font-size: 20pt; font-weight: 800; line-height: 1.15; margin-bottom: 10px;">
+        Architectural Intelligence for Core Enterprise Systems.
+      </div>
+
+      <div class="spec-text" style="color:#FF5A1F; margin-bottom: 2px;">SECTION H2 // 14pt Neue Montreal Bold (-0.02em letter-spacing)</div>
+      <div style="font-size: 12pt; font-weight: 700; line-height: 1.25; margin-bottom: 10px;">
+        Deterministic Inference Pipelines Integrated into Legacy ERP Kernels.
+      </div>
+
+      <div class="spec-text" style="color:#FF5A1F; margin-bottom: 2px;">BODY PARAGRAPH // 9pt Inter Regular (1.5 line-height)</div>
+      <p style="font-size: 8.5pt; color: #3A3A3C; margin-bottom: 10px;">
+        Exiom bermitra dengan organisasi enterprise untuk melakukan modernisasi menyeluruh pada sistem transaksional. Kami tidak melapisi antarmuka pelanggan dengan chatbot pihak ketiga yang rentan bocor; kami menanamkan model pembelajaran mesin deterministik langsung di lapisan data internal klien dengan audit kepatuhan regulasi penuh.
+      </p>
+
+      <div class="spec-text" style="color:#FF5A1F; margin-bottom: 2px;">METADATA REFERENCE // 7pt IBM Plex Mono Bold (+0.1em letter-spacing)</div>
+      <div style="font-family: monospace; font-size: 7.5pt; color: #636366; background: #F2F2F7; padding: 6px 10px; border-radius: 2px;">
+        REF // EX-SYS-2026 &bull; LATENCY &le; 12ms &bull; DETERMINISTIC PIPELINE CONFIRMED
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HALAMAN 6: SIGNATURE MOTIF (SWISS BOUNDARY) ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 06 // Elemen Grafis Pendukung</div>
+    <div class="chapter-title">Signature Motif: Swiss Boundary & Datum Rule</div>
+    <p>
+      Untuk menghindari simbol klise produk AI murah (seperti ikon sparkle bintang, kubus mengambang, atau tanda tambah `+`), Exiom menggunakan <strong>The Datum Line & Modular Boundary</strong> yang terinspirasi dari standar pelaporan strategis McKinsey dan blueprint arsitektural.
+    </p>
+
+    <div class="grid-2">
+      <!-- Motif 1: Boundary Box -->
+      <div class="col card" style="border: 1px solid #1C1C1E; padding: 16px; position: relative;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #1C1C1E; padding-bottom: 6px; margin-bottom: 10px;">
+          <span style="font-family: monospace; font-size: 7pt; font-weight: 700;">// SECTION A: ARCHITECTURE BOUNDARY</span>
+          <span style="font-family: monospace; font-size: 7pt; color: #FF5A1F; font-weight: 800;">SPEC.01</span>
+        </div>
+        <div style="font-weight: 800; font-size: 9.5pt; margin-bottom: 4px;">Hairline Boundary Rule (1px Solid)</div>
+        <p style="font-size: 7.5pt; color: #48484A;">
+          Setiap modul data penting, perbandingan fitur, atau ringkasan eksekutif dibingkai dengan garis hitam tipis 1px, lengkap dengan indeks teknis di sudut kiri atas.
+        </p>
+      </div>
+
+      <!-- Motif 2: Accent Datum -->
+      <div class="col card-dark" style="border: 1px solid #2C2C2E; padding: 16px; position: relative; border-top: 3px solid #FF5A1F;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2C2C2E; padding-bottom: 6px; margin-bottom: 10px;">
+          <span style="font-family: monospace; font-size: 7pt; font-weight: 700; color: #A1A1A6;">// CORE SYSTEM TELEMETRY</span>
+          <span style="font-family: monospace; font-size: 7pt; color: #FF5A1F; font-weight: 800;">LIVE</span>
+        </div>
+        <div style="font-weight: 800; font-size: 9.5pt; margin-bottom: 4px; color: #FAFAFA;">Signal Orange Horizontal Datum</div>
+        <p style="font-size: 7.5pt; color: #A1A1A6;">
+          Garis horizontal tunggal berwarna Signal Orange setebal 2px hingga 3px diletakkan di tepi atas cover proposal, slide pembuka, dan kartu nama eksekutif.
+        </p>
+      </div>
+    </div>
+
+    <div class="sub-title">Pedoman Tata Kelola Diagram & Visualisasi Data</div>
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Kategori Data</th>
+          <th>Kode Warna Wajib</th>
+          <th>Fungsi Visualisasi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Data Historis / Baseline Klien</strong></td>
+          <td><span class="spec-highlight" style="color:#1C1C1E;">Deep Charcoal (#1C1C1E)</span></td>
+          <td>Menampilkan kinerja sistem warisan (*legacy*), biaya operasional sebelum optimasi.</td>
+        </tr>
+        <tr>
+          <td><strong>Benchmark Industri / Regulasi</strong></td>
+          <td><span class="spec-highlight" style="color:#8E8E93;">Neutral Gray (#8E8E93)</span></td>
+          <td>Menampilkan standar rata-rata pasar atau batas kepatuhan regulasi pemerintah.</td>
+        </tr>
+        <tr>
+          <td><strong>EXIOM Optimized Layer / ROI</strong></td>
+          <td><span class="spec-highlight" style="color:#FF5A1F;">Signal Orange (#FF5A1F)</span></td>
+          <td><strong>HANYA</strong> untuk kurva efisiensi baru, peningkatan throughput transaksi, dan nilai ROI riil.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== HALAMAN 7: DOKUMEN PROPOSAL & KOP SURAT (PORTRAIT A4) ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 07 // Standar Dokumen Cetak & Formal</div>
+    <div class="chapter-title">Dokumen Resmi: Proposal Teknis & Kop Surat (PORTRAIT A4)</div>
+    <p>
+      Seluruh dokumen kontrak kerja sama (MSA/NDA), proposal komersial, nota teknis, dan invoice <strong>wajib menggunakan format vertikal (PORTRAIT A4)</strong> dengan margin formal korporasi.
+    </p>
+
+    <div class="grid-2">
+      <!-- Proposal Cover -->
+      <div class="col card card-dark" style="height: 380px; position: relative; border-top: 3.5px solid #FF5A1F; padding: 20px;">
+        <div style="display: flex; justify-content: space-between;">
+          <div>
+            <span style="font-weight: 900; font-size: 11pt; color: #FAFAFA; letter-spacing: 0.05em;">EXIOM</span>
+            <div style="font-size: 6.5pt; color: #8E8E93; text-transform: uppercase;">CONSULTANT</div>
+          </div>
+          <div style="font-family: monospace; font-size: 6.5pt; color: #FF5A1F;">DOC // TECH-PROP-2026</div>
+        </div>
+
+        <div style="margin-top: 60px;">
+          <div style="font-size: 6.5pt; color: #FF5A1F; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;">
+            TECHNICAL PROPOSAL & SPECIFICATION
+          </div>
+          <div style="font-weight: 900; font-size: 14pt; color: #FAFAFA; line-height: 1.25; margin-top: 8px;">
+            Enterprise System Architecture & AI Core Layer Integration
+          </div>
+          <div style="font-size: 7.5pt; color: #8E8E93; margin-top: 10px;">
+            Dipersiapkan untuk: Board of Directors & CTO
+          </div>
+        </div>
+
+        <div style="position: absolute; bottom: 18px; left: 20px; right: 20px; border-top: 1px solid #2C2C2E; padding-top: 10px; display: flex; justify-content: space-between;">
+          <div style="font-size: 6.5pt; color: #8E8E93;">VERSI 2.4 &bull; TERTUTUP (CONFIDENTIAL)</div>
+          <div style="font-size: 6.5pt; color: #C7C7CC;">exiom.id</div>
+        </div>
+      </div>
+
+      <!-- Letterhead Kop Surat -->
+      <div class="col card" style="height: 380px; position: relative; border-top: 3.5px solid #1C1C1E; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #1C1C1E; padding-bottom: 8px;">
+          <div>
+            <span style="font-weight: 900; font-size: 11pt; color: #1C1C1E;">EXIOM</span>
+            <div style="font-size: 6.5pt; color: #8E8E93; text-transform: uppercase;">CONSULTANT</div>
+          </div>
+          <div style="text-align: right; font-size: 6.5pt; color: #636366;">
+            Sudirman CBD Lot 28, Jakarta<br>contact@exiom.id &bull; https://exiom.id
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; font-size: 7.5pt; color: #2C2C2E;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-family: monospace; font-size: 6.5pt;">
+            <div>REF: EX-MEMO-2026-88</div>
+            <div style="color: #8E8E93;">OCTOBER 2026</div>
+          </div>
+          <div style="font-weight: 800; margin-bottom: 4px; font-size: 8pt;">MEMORANDUM ARSITEKTUR SISTEM</div>
+          <p style="font-size: 7pt; color: #48484A; line-height: 1.45;">
+            Berdasarkan evaluasi terhadap infrastruktur transaksi yang berjalan, integrasi AI tidak disarankan melalui bot pihak ketiga publik. Exiom merekomendasikan penanaman model inferensi deterministik langsung di kernel database internal klien...
+          </p>
+        </div>
+
+        <div style="position: absolute; bottom: 16px; left: 20px; right: 20px; border-top: 1px solid #E5E5EA; padding-top: 8px; font-size: 6pt; color: #8E8E93; display: flex; justify-content: space-between;">
+          <div>EXIOM CONSULTANT &bull; CONFIDENTIAL</div>
+          <div>HALAMAN 1 DARI 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HALAMAN 8: SISTEM PRESENTASI PITCH DECK (LANDSCAPE 16:9) ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 08 // Sistem Presentasi Eksekutif</div>
+    <div class="chapter-title">Pitch Deck & Board Briefing Master (LANDSCAPE 16:9)</div>
+    <p>
+      Slide presentasi rapat direksi dan investor <strong>wajib menggunakan rasio aspek LANDSCAPE 16:9 Widescreen</strong> untuk kenyamanan tampilan proyektor resolusi tinggi dan sesi virtual board meeting.
+    </p>
+
+    <!-- Slide 1 Cover -->
+    <div class="slide-container">
+      <div class="slide-head">
+        <div>SLIDE 01: TITLE SLIDE (LANDSCAPE 16:9 WIDESCREEN)</div>
+        <div style="color: #FF5A1F;">CONFIDENTIAL BOARD BRIEFING</div>
+      </div>
+      <div style="background: #1C1C1E; color: #FAFAFA; padding: 22px 24px; position: relative;">
+        <div style="display: flex; justify-content: space-between;">
+          <div>
+            <span style="font-weight: 900; font-size: 14pt; letter-spacing: 0.05em;">EXIOM</span>
+            <div style="font-size: 6.5pt; color: #8E8E93; text-transform: uppercase;">CONSULTANT</div>
+          </div>
+          <div style="font-family: monospace; font-size: 6.5pt; color: #FF5A1F;">DECK // B2B ENTERPRISE</div>
+        </div>
+        <div style="margin-top: 22px; max-width: 80%;">
+          <div style="font-size: 6.5pt; color: #FF5A1F; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;">
+            STRATEGIC BRIEFING &bull; BOARD LEVEL
+          </div>
+          <div style="font-weight: 900; font-size: 15pt; line-height: 1.15; margin-top: 4px;">
+            Critical Enterprise Systems.<br>Engineered for Intelligence.
+          </div>
+        </div>
+        <div style="margin-top: 20px; border-top: 1px solid #2C2C2E; padding-top: 8px; display: flex; justify-content: space-between; font-size: 6.5pt; color: #8E8E93;">
+          <div>PRESENTASI TEKNIS & KOMERSIAL &bull; Q4 2026</div>
+          <div style="color: #C7C7CC;">https://exiom.id</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 & 3 -->
+    <div class="grid-2">
+      <!-- Slide 2: Problem & Target State -->
+      <div class="col slide-container">
+        <div class="slide-head">SLIDE 02: ARCHITECTURE GAP</div>
+        <div style="background: #FFFFFF; padding: 14px; height: 140px;">
+          <div style="font-size: 6.5pt; font-family: monospace; color: #8E8E93;">// SECTION 02: ARCHITECTURE GAP</div>
+          <div style="font-weight: 800; font-size: 8.5pt; color: #1C1C1E; margin: 3px 0 6px 0;">Siloed Data vs Native Intelligence</div>
+          <div style="background: #F2F2F7; padding: 5px 8px; border-radius: 2px; font-size: 6.2pt; margin-bottom: 5px;">
+            <strong style="color: #FF3B30;">Current Trap:</strong> Vendor AI generik menempelkan bot luar. Latensi tinggi & resiko kebocoran data.
+          </div>
+          <div style="background: #FDF4F0; border-left: 2px solid #FF5A1F; padding: 5px 8px; border-radius: 2px; font-size: 6.2pt;">
+            <strong style="color: #FF5A1F;">The Exiom Way:</strong> Model ML ditanam di arsitektur internal dengan SLA throughput terjamin.
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Roadmap -->
+      <div class="col slide-container">
+        <div class="slide-head">SLIDE 03: COMMERCIALS & ROADMAP</div>
+        <div style="background: #FFFFFF; padding: 14px; height: 140px;">
+          <div style="font-size: 6.5pt; font-family: monospace; color: #8E8E93;">// SECTION 03: EXECUTION PLAN</div>
+          <div style="font-weight: 800; font-size: 8.5pt; color: #1C1C1E; margin: 3px 0 6px 0;">Phased Implementation</div>
+          <table style="width: 100%; font-size: 6.2pt; border-collapse: collapse; margin-top: 4px;">
+            <tr style="border-bottom: 1px solid #E5E5EA;">
+              <td style="padding: 3px 0;">Phase 1: Architecture Audit</td>
+              <td style="text-align: right; font-weight: 700;">Minggu 1 - 4</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #E5E5EA;">
+              <td style="padding: 3px 0;">Phase 2: Core Layer Engineering</td>
+              <td style="text-align: right; font-weight: 700;">Minggu 5 - 12</td>
+            </tr>
+            <tr>
+              <td style="padding: 3px 0; color: #FF5A1F; font-weight: 700;">Phase 3: Production SLA Handover</td>
+              <td style="text-align: right; font-weight: 700; color: #FF5A1F;">Minggu 13 - 16</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HALAMAN 9: WEBSITE & MEDIA SOSIAL ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 09 // Saluran Komunikasi Digital</div>
+    <div class="chapter-title">Website Hero Section (exiom.id) & Media Sosial</div>
+    <p>
+      Kehadiran digital Exiom harus mencerminkan ketelitian rekayasa piranti lunak kelas dunia. Bebas dari animasi berlebihan; konten difokuskan pada pemecahan masalah teknis nyata dan arsitektur sistem.
+    </p>
+
+    <!-- Browser Mockup -->
+    <div class="browser-container">
+      <div class="browser-bar">https://exiom.id</div>
+      <div style="background: #1C1C1E; padding: 14px 20px; color: #FAFAFA; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-weight: 900; font-size: 11pt; letter-spacing: 0.05em;">EXIOM</span>
+          <span style="font-size: 6.5pt; color: #8E8E93; margin-left: 6px;">CONSULTANT</span>
+        </div>
+        <div style="font-size: 6.8pt; color: #A1A1A6;">
+          <span style="margin-right: 14px; color: #FAFAFA;">Architecture</span>
+          <span style="margin-right: 14px;">Applied Intelligence</span>
+          <span style="margin-right: 14px;">Case Studies</span>
+          <span style="background: #FF5A1F; color: #FFFFFF; padding: 5px 10px; font-weight: 700; border-radius: 2px;">Consult an Architect</span>
+        </div>
+      </div>
+      <div style="background: #1C1C1E; border-top: 1px solid #2C2C2E; padding: 24px 20px; color: #FAFAFA;">
+        <div style="font-family: monospace; font-size: 6.5pt; color: #FF5A1F; margin-bottom: 6px;">
+          // ENTERPRISE IT CONSULTANCY &amp; SOFTWARE ARCHITECTURE
+        </div>
+        <div style="font-weight: 900; font-size: 16pt; line-height: 1.15; max-width: 80%;">
+          Every critical system, engineered for intelligence.
+        </div>
+        <div style="font-size: 7.8pt; color: #A1A1A6; line-height: 1.45; max-width: 70%; margin-top: 8px;">
+          Exiom bermitra dengan organisasi enterprise untuk memasukkan model kecerdasan terapan langsung ke dalam inti arsitektur perangkat lunak Anda—bukan sekadar chatbot tempelan di luar.
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media Matrix -->
+    <div class="grid-3">
+      <!-- Feed 1:1 -->
+      <div class="col card card-dark" style="padding: 12px; height: 165px; position: relative;">
+        <div style="font-family: monospace; font-size: 6pt; color: #FF5A1F;">// BRIEF 01 &bull; 1:1 POST</div>
+        <div style="font-weight: 900; font-size: 8pt; color: #FAFAFA; margin-top: 10px; line-height: 1.25;">
+          Mengapa chatbot tempelan membahayakan compliance data bank.
+        </div>
+        <div style="position: absolute; bottom: 10px; left: 12px; right: 12px; display: flex; justify-content: space-between; border-top: 1px solid #2C2C2E; padding-top: 4px;">
+          <span style="font-size: 6pt; font-weight: 900;">EXIOM</span>
+          <span style="font-size: 5.5pt; color: #FF5A1F; font-weight: 700;">SWIPE &rarr;</span>
+        </div>
+      </div>
+
+      <!-- Story 9:16 -->
+      <div class="col card card-dark" style="padding: 12px; height: 165px; position: relative; border-radius: 4px;">
+        <div style="font-family: monospace; font-size: 5.5pt; color: #8E8E93;">STORY // 9:16</div>
+        <div style="font-weight: 800; font-size: 7.2pt; color: #FAFAFA; margin-top: 12px; line-height: 1.2;">
+          Deterministic vs Generative in Enterprise ERP.
+        </div>
+        <div style="background: rgba(255, 90, 31, 0.15); border: 1px solid #FF5A1F; padding: 4px; font-size: 5pt; color: #FF5A1F; text-align: center; font-weight: 700; margin-top: 14px; border-radius: 2px;">
+          BACA WHITEPAPER
+        </div>
+      </div>
+
+      <!-- Business Card -->
+      <div class="col card card-dark" style="padding: 12px; height: 165px; position: relative; border-left: 3px solid #FF5A1F;">
+        <span style="font-weight: 900; font-size: 11pt; color: #FAFAFA;">EXIOM</span>
+        <div style="font-size: 5.5pt; color: #8E8E93; text-transform: uppercase;">CONSULTANT</div>
+        <div style="margin-top: 12px;">
+          <div style="font-weight: 700; font-size: 7.5pt;">Raden Arya, M.Sc.</div>
+          <div style="font-size: 6pt; color: #FF5A1F; font-weight: 700;">MANAGING PARTNER</div>
+        </div>
+        <div style="position: absolute; bottom: 10px; left: 12px; font-size: 6pt; color: #8E8E93;">
+          arya@exiom.id &bull; SCBD Jakarta
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HALAMAN 10: KAMUS BAHASA & TATA KELOLA BRAND ==================== -->
+  <div class="chapter-page">
+    <div class="chapter-number">Bab 10 // Guardrail Komunikasi & Kepatuhan</div>
+    <div class="chapter-title">Kamus Bahasa Korporasi & Anti-AI Slop Lexicon</div>
+    <p>
+      Integritas brand dijaga melalui ketepatan diksi dalam penulisan proposal, artikel riset LinkedIn, dan presentasi teknis. Hindari istilah pemasaran konsumer; gunakan kosakata yang berbobot secara komputasi.
+    </p>
+
+    <div class="grid-2">
+      <div class="col card" style="border-left: 3px solid #34C759;">
+        <span style="font-size: 7pt; font-weight: 800; color: #2C662D; text-transform: uppercase;">Wajib Digunakan (Enterprise Caliber)</span>
+        <ul style="margin: 6px 0 0 -18px; font-size: 7.5pt; color: #2C662D; line-height: 1.55;">
+          <li><em>"Deterministic inference pipeline"</em> alih-alih <em>"smart engine"</em>.</li>
+          <li><em>"Native architectural integration"</em> alih-alih <em>"plug-and-play AI"</em>.</li>
+          <li><em>"Isolated on-premise / VPC model routing"</em> alih-alih <em>"secure bot"</em>.</li>
+          <li><em>"Latency & throughput SLAs guarantees"</em> alih-alih <em>"super fast AI"</em>.</li>
+          <li><em>"Applied machine intelligence"</em> alih-alih <em>"AI magic"</em>.</li>
+        </ul>
+      </div>
+
+      <div class="col card" style="border-left: 3px solid #FF3B30;">
+        <span style="font-size: 7pt; font-weight: 800; color: #8F221E; text-transform: uppercase;">Diharamkan Mutlak (AI Slop & Hype)</span>
+        <ul style="margin: 6px 0 0 -18px; font-size: 7.5pt; color: #8F221E; line-height: 1.55;">
+          <li>Dilarang kata: <em>"revolutionary", "game-changer", "magic", "miracle"</em>.</li>
+          <li>Dilarang frasa: <em>"Unleash the power of AI"</em> (klise marketing murahan).</li>
+          <li>Dilarang: <em>"All-in-one AI assistant to boost your productivity"</em>.</li>
+          <li>Dilarang visual: Robot 3D berjabatan tangan, otak neon transparan.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-title">Checklist Otorisasi Penggunaan Brand (Governance Audit)</div>
+    <table class="doc-table">
+      <thead>
+        <tr>
+          <th>Poin Pemeriksaan</th>
+          <th>Kriteria Kepatuhan</th>
+          <th>Verifikator</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Akurasi Garis Oranye X</strong></td>
+          <td>Hanya 1 garis diagonal yang berwarna Signal Orange (#FF5A1F). Garis silang satunya wajib monokrom.</td>
+          <td>Brand Lead / Lead Architect</td>
+        </tr>
+        <tr>
+          <td><strong>Disiplin Proporsi Warna</strong></td>
+          <td>Signal Orange tidak melebihi 5% luas bidang; tidak dipakai sebagai background blok besar.</td>
+          <td>UI/UX Lead</td>
+        </tr>
+        <tr>
+          <td><strong>Pemisahan Dokumen</strong></td>
+          <td>Proposal Teknis menggunakan PORTRAIT A4; Slide Pitching menggunakan LANDSCAPE 16:9.</td>
+          <td>Engagement Partner</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>

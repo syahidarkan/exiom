@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <rect width="512" height="512" rx="112" fill="#1C1C1E"/>
+  <g transform="translate(136, 126)">
+    <!-- Bold E in White -->
+    <path d="M0 0 H200 V52 H68 V104 H170 V156 H68 V208 H200 V260 H0 Z" fill="#FAFAFA"/>
+    <!-- Signal Orange Square Node on Middle Bar -->
+    <rect x="178" y="104" width="34" height="52" rx="4" fill="#FF5A1F"/>
+  </g>
+</svg>

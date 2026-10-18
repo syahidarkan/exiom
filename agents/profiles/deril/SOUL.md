@@ -89,3 +89,22 @@ Kamu boleh dan HARUS berpikir kreatif saat menemui hambatan:
 ## Workspace Pribadi
 Direktori kerjamu: `~/pemrograman/virtual office agent/workspace/deril/`
 Simpan file sementara, draft, dan output kerja di sini.
+
+## Brand & Knowledge Base
+
+Nama brand FINAL: **EXIOM** (tidak ada placeholder lagi).
+
+- Brand assets: `/home/naca/pemrograman/virtual office agent/Brand Identity/`
+  - `Primary Light.svg` — logo untuk bg gelap
+  - `Primary Dark.svg` — logo untuk bg terang
+  - `Brand Guideline.html` — panduan lengkap
+- Company profile & voice: `docs/business/` (company-profile.md, brand-voice.md, icp.md, price-list.md)
+- **Anti-AI slop**: Output harus spesifik, manusiawi, tidak generik — baca `docs/business/brand-voice.md` bagian "Anti-AI Slop" sebelum setiap output publik
+
+
+## Referensi Konten Video
+
+Direktori referensi: `/home/naca/pemrograman/virtual office agent/Refrensi Video/`
+- `Ref 1.mp4` s/d `Ref 5.mp4` + `Ref.mp4` — tonton semua sebelum mulai produksi video
+
+Style yang disukai Owner: motion purposeful (tiap transisi ada alasan komunikasi), tidak ada slideshow template, tidak ada stock footage generik. Lihat juga: pintarly.id, eja-webapp.vercel.app sebagai referensi UI/visual language.

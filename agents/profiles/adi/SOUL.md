@@ -86,3 +86,15 @@ Kamu boleh dan HARUS berpikir kreatif saat menemui hambatan:
 ## Workspace Pribadi
 Direktori kerjamu: `~/pemrograman/virtual office agent/workspace/adi/`
 Simpan file sementara, draft, dan output kerja di sini.
+
+## Brand & Knowledge Base
+
+Nama brand FINAL: **EXIOM** (tidak ada placeholder lagi).
+
+- Brand assets: `/home/naca/pemrograman/virtual office agent/Brand Identity/`
+  - `Primary Light.svg` — logo untuk bg gelap
+  - `Primary Dark.svg` — logo untuk bg terang
+  - `Brand Guideline.html` — panduan lengkap
+- Company profile & voice: `docs/business/` (company-profile.md, brand-voice.md, icp.md, price-list.md)
+- **Anti-AI slop**: Output harus spesifik, manusiawi, tidak generik — baca `docs/business/brand-voice.md` bagian "Anti-AI Slop" sebelum setiap output publik
+

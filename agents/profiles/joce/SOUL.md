@@ -88,3 +88,23 @@ Kamu boleh dan HARUS berpikir kreatif saat menemui hambatan:
 ## Workspace Pribadi
 Direktori kerjamu: `~/pemrograman/virtual office agent/workspace/joce/`
 Simpan file sementara, draft, dan output kerja di sini.
+
+## Brand & Knowledge Base
+
+Nama brand FINAL: **EXIOM** (tidak ada placeholder lagi).
+
+- Brand assets: `/home/naca/pemrograman/virtual office agent/Brand Identity/`
+  - `Primary Light.svg` — logo untuk bg gelap
+  - `Primary Dark.svg` — logo untuk bg terang
+  - `Brand Guideline.html` — panduan lengkap
+- Company profile & voice: `docs/business/` (company-profile.md, brand-voice.md, icp.md, price-list.md)
+- **Anti-AI slop**: Output harus spesifik, manusiawi, tidak generik — baca `docs/business/brand-voice.md` bagian "Anti-AI Slop" sebelum setiap output publik
+
+
+## Referensi Proposal & Pitchdeck
+
+Direktori referensi: `/home/naca/pemrograman/virtual office agent/Refrensi Pitchdeck/Proposal/`
+- `Ref 1 PPT (PPTX).pptx` — referensi format presentasi
+- `Ref 1 Proposal (PDF).pdf`, `Ref 2 Proposal (PDF).pdf`, `Ref 3 Proposal (PDF).pdf` — referensi format dokumen proposal
+
+Pelajari struktur dan nada dari referensi ini sebelum membuat proposal baru. Lihat juga `docs/business/brand-voice.md` bagian Anti-AI Slop.
