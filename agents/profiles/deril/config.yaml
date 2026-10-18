@@ -1,0 +1,52 @@
+_config_version: 50
+advertised_toolsets:
+- file
+- tts
+- video
+- video_gen
+- image_gen
+- web
+- a2a
+- browser
+- memory
+custom_providers:
+- api_mode: chat_completions
+  base_url: http://127.0.0.1:4001/v1
+  key_env: EXIOM_LITELLM_MASTER_KEY
+  model: g2-haiku
+  models:
+    g2-haiku: {}
+    g2-sonnet: {}
+  name: ExiomClaude
+mcp_servers:
+  context7:
+    enabled: true
+    url: https://mcp.context7.com/mcp
+  filesystem:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-filesystem'
+    - /home/naca/pemrograman/virtual office agent
+    - /home/naca/pemrograman/exiom-web
+    command: npx
+    enabled: true
+  playwright:
+    args:
+    - -y
+    - '@playwright/mcp@latest'
+    - --headless
+    command: npx
+    enabled: true
+  postgres:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-postgres'
+    - ${EXIOM_DB_URL}
+    command: npx
+    enabled: true
+model:
+  api_key: sk-exiom-business-proxy
+  api_mode: chat_completions
+  base_url: http://127.0.0.1:4001/v1
+  default: g2-haiku
+  provider: custom

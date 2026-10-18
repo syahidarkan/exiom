@@ -25,11 +25,6 @@ model_list:
       model: anthropic/claude-haiku-5-5
       api_key: os.environ/EXIOM_CLAUDE_KEY_G1
 
-  - model_name: g1-opus
-    litellm_params:
-      model: anthropic/claude-opus-5-5
-      api_key: os.environ/EXIOM_CLAUDE_KEY_G1
-
   # ── GROUP 2: Mia + Deril + Gagah ──────────────────────────────────
   - model_name: g2-sonnet
     litellm_params:

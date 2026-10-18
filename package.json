@@ -14,7 +14,7 @@
     "cron:morning-summary":"tsx src/jobs/morning-summary.ts",
     "cron:hugo-recap":     "tsx src/jobs/hugo-daily-recap.ts",
     "cron:mia-research":   "tsx src/jobs/mia-morning-research.ts",
-    "dev:dashboard":       "cd ../hermes-virtual-office && HERMES_BIN=/home/naca/.local/bin/hermes npm run dev"
+    "dev:dashboard":       "cd /home/naca/pemrograman/hermes-virtual-office && HERMES_BIN=/home/naca/.local/bin/hermes npm run dev"
   },
   "dependencies": {
     "dotenv": "^18.0.8",

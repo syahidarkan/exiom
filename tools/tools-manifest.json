@@ -2,9 +2,10 @@
   "_meta": {
     "version": "1.0.0",
     "updated": "2026-10-17",
-    "description": "Registry of all tools available to Exiom agents"
+    "description": "Registry of all tools available to Exiom agents",
+    "install_autonomy": true,
+    "note": "Agents may install additional tools via uv/pip/npm when needed. If a tool is unavailable, propose an alternative method to Owner via approval queue."
   },
-
   "mia": {
     "name": "Mia — Marketing Manager",
     "tools": [
@@ -42,7 +43,6 @@
       }
     ]
   },
-
   "joce": {
     "name": "Joce — Client Acquisition",
     "tools": [
@@ -73,7 +73,6 @@
       }
     ]
   },
-
   "deril": {
     "name": "Deril — Editor / Content",
     "tools": [
@@ -103,7 +102,9 @@
         "id": "pixabay",
         "type": "http-api",
         "usage": "bash tools/helpers/deril-tts.sh pixabay \"modern office\" --type video",
-        "env_required": ["PIXABAY_API_KEY"],
+        "env_required": [
+          "PIXABAY_API_KEY"
+        ],
         "purpose": "Free stock photos and videos — no attribution required, commercial use OK",
         "docs": "https://pixabay.com/api/docs/",
         "note": "API key sudah tersimpan di .env"
@@ -117,7 +118,6 @@
       }
     ]
   },
-
   "adi": {
     "name": "Adi — Developer",
     "tools": [
@@ -143,10 +143,16 @@
         "install": "uv tool install playwright && python3 -m playwright install chromium",
         "usage": "python3 -m playwright codegen https://target.com",
         "purpose": "Browser automation for E2E testing and QA"
+      },
+      {
+        "id": "browser-use",
+        "type": "python-cli",
+        "install": "uv tool install browser-use",
+        "usage": "browser-use <<'PY'\n# Python code to control browser\nPY",
+        "purpose": "Browser automation — universal fallback when API/tool unavailable"
       }
     ]
   },
-
   "gagah": {
     "name": "Gagah — SEO Researcher",
     "tools": [
@@ -155,7 +161,10 @@
         "type": "python-lib",
         "install": "pip install praw",
         "usage": "python3 tools/helpers/gagah-seo.py reddit \"web development indonesia\" --limit 50",
-        "env_required": ["REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET"],
+        "env_required": [
+          "REDDIT_CLIENT_ID",
+          "REDDIT_CLIENT_SECRET"
+        ],
         "purpose": "Reddit API — forum research, content ideas, pain points",
         "repo": "https://github.com/praw-dev/praw"
       },
@@ -164,7 +173,9 @@
         "type": "python-lib",
         "install": "pip install searchconsole",
         "usage": "python3 tools/helpers/gagah-seo.py gsc --site https://exiom.id --days 28",
-        "env_required": ["GDRIVE_SERVICE_ACCOUNT_PATH"],
+        "env_required": [
+          "GDRIVE_SERVICE_ACCOUNT_PATH"
+        ],
         "purpose": "Google Search Console — impressions, CTR, keyword positions",
         "repo": "https://github.com/casperbakker/search-console-python"
       },
@@ -174,10 +185,16 @@
         "install": "pip install pytrends",
         "usage": "python3 tools/helpers/gagah-seo.py trends \"jasa website\" --geo ID",
         "purpose": "Google Trends — keyword demand over time"
+      },
+      {
+        "id": "browser-use",
+        "type": "python-cli",
+        "install": "uv tool install browser-use",
+        "usage": "browser-use <<'PY'\n# Python code to control browser\nPY",
+        "purpose": "Browser automation — universal fallback when API/tool unavailable"
       }
     ]
   },
-
   "nela": {
     "name": "Nela — PR Manager",
     "tools": [
@@ -196,10 +213,16 @@
         "usage": "node tools/helpers/ale-whatsapp.js qr  # first time link\nnode tools/helpers/ale-whatsapp.js send 628xxx 'Pesan dari Nela'",
         "purpose": "WhatsApp automation (shared with Ale)",
         "repo": "https://github.com/WhiskeySockets/Baileys"
+      },
+      {
+        "id": "browser-use",
+        "type": "python-cli",
+        "install": "uv tool install browser-use",
+        "usage": "browser-use <<'PY'\n# Python code to control browser\nPY",
+        "purpose": "Browser automation — universal fallback when API/tool unavailable"
       }
     ]
   },
-
   "ale": {
     "name": "Ale — Client Relations",
     "tools": [
@@ -221,7 +244,6 @@
       }
     ]
   },
-
   "kenzie": {
     "name": "Kenzie — IT Manager",
     "tools": [
@@ -239,10 +261,16 @@
         "install": "pip install psutil",
         "usage": "python3 -c \"import psutil; print(psutil.cpu_percent(), psutil.virtual_memory().percent)\"",
         "purpose": "System resource monitoring"
+      },
+      {
+        "id": "browser-use",
+        "type": "python-cli",
+        "install": "uv tool install browser-use",
+        "usage": "browser-use <<'PY'\n# Python code to control browser\nPY",
+        "purpose": "Browser automation — universal fallback when API/tool unavailable"
       }
     ]
   },
-
   "hugo": {
     "name": "Hugo — Finance",
     "tools": [
@@ -260,6 +288,13 @@
         "type": "docker-service",
         "url": "http://localhost:3001",
         "purpose": "Monitor availability of Exiom billing/finance endpoints"
+      },
+      {
+        "id": "browser-use",
+        "type": "python-cli",
+        "install": "uv tool install browser-use",
+        "usage": "browser-use <<'PY'\n# Python code to control browser\nPY",
+        "purpose": "Browser automation — universal fallback when API/tool unavailable"
       }
     ]
   }

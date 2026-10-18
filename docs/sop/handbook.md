@@ -209,22 +209,7 @@ Estimasi biaya realistis bulan pertama: **$10–35/bulan** (kemungkinan di bawah
 - Semua kode integrasi (API sosmed, Remotion pipeline, dll)
 - Begitu Owner sudah kasih API key/token hasil dari akun manual di atas
 
-### 4.6 Akun yang harus dibuat manual oleh Owner
-
-| Akun/Layanan | Dipakai oleh | Catatan |
-|---|---|---|
-| Claude Console Workspace "Agent Bisnis" | Semua 9 agent | Perlu kartu pembayaran, spend limit |
-| Meta Business Suite (verifikasi bisnis) | Deril (upload IG/FB), Gagah/Mia (Threads) | Satu verifikasi bisnis untuk IG + FB + Threads + WA |
-| Google Ads | Mia (riset keyword gratis via Keyword Planner), Owner (Search Ads berbayar) | |
-| TikTok for Business / Ads Manager | Deril (upload), Owner (TikTok Ads berbayar) | |
-| TikTok Content Posting API akses developer | Deril | Approval developer TikTok |
-| YouTube Data API (Google Cloud Console project) | Deril | Untuk upload Shorts |
-| X Developer Account (free write-only tier) | Deril, Gagah | Cap ~1.500 post/bulan, tanpa akses baca |
-| Domain registrar + hosting | Gagah/web baru | Domain `[BRAND_NAME]` belum ada, nama belum final |
-| Resend / email provider | Joce (outbound email proposal) | |
-| WhatsApp Business API (via Meta) | Joce (outbound WA proposal) | Perlu verifikasi bisnis juga |
-
-### 4.7 API & Integrasi Teknis (ringkasan)
+### 4.6 API & Integrasi Teknis (ringkasan)
 
 | Integrasi | Fungsi | Dipakai agent |
 |---|---|---|
@@ -243,7 +228,7 @@ Estimasi biaya realistis bulan pertama: **$10–35/bulan** (kemungkinan di bawah
 | WhatsApp Business API | WA outbound proposal | Joce |
 | Next.js + Supabase | Web & blog baru | Gagah (+ Kenzie/Adi untuk infra) |
 
-### 4.8 Techstack ringkas
+### 4.7 Techstack ringkas
 
 | Layer | Teknologi |
 |---|---|

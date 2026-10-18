@@ -13,7 +13,7 @@
 | pytrends | Python lib | Mia, Gagah | ✅ installed | `import pytrends` |
 | searxng | Docker | Mia | 🐳 needs `docker compose up` | localhost:8080 |
 | google-maps-scraper | Go binary | Joce | ✅ installed | `~/.local/bin/google-maps-scraper` |
-| puppeteer-extra-stealth | Node | Joce | ⏳ installing | `tools/node/joce-crawler/` |
+| puppeteer-extra-stealth | Node | Joce | ✅ installed | `tools/node/joce-crawler/` |
 | check-email | Docker | Joce | 🐳 needs `docker compose up` | localhost:8989 |
 | remotion | Node framework | Deril | ✅ pre-existing | `remotion/` |
 | edge-tts | Python CLI | Deril | ✅ installed | `edge-tts` |
@@ -25,7 +25,7 @@
 | praw | Python lib | Gagah | ✅ installed | `import praw` |
 | searchconsole | Python lib | Gagah | ✅ installed | `import searchconsole` |
 | rss-bridge | Docker | Nela, Ale | 🐳 needs `docker compose up` | localhost:3100 |
-| baileys-whatsapp | Node | Nela, Ale | ⏳ installing | `tools/node/baileys-wa/` |
+| baileys-whatsapp | Node | Nela, Ale | ✅ installed | `tools/node/baileys-wa/` |
 | uptime-kuma | Docker | Kenzie, Hugo | 🐳 needs `docker compose up` | localhost:3001 |
 | typst | Binary | Hugo | ✅ installed | `~/.local/bin/typst` |
 | psutil | Python lib | Kenzie | ✅ installed | `import psutil` |

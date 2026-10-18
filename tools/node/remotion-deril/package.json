@@ -1,0 +1,15 @@
+{
+  "name": "exiom-remotion-deril",
+  "version": "1.0.0",
+  "scripts": {
+    "render": "remotion render",
+    "studio": "remotion studio"
+  },
+  "dependencies": {
+    "remotion": "^4.0.0",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/media-utils": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

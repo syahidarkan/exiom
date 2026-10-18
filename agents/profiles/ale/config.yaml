@@ -1,0 +1,54 @@
+_config_version: 50
+advertised_toolsets:
+- web
+- browser
+- vision
+- todo
+- a2a
+- memory
+- stt
+custom_providers:
+- api_mode: chat_completions
+  base_url: http://127.0.0.1:4001/v1
+  key_env: EXIOM_LITELLM_MASTER_KEY
+  model: g3-haiku
+  models:
+    g3-haiku: {}
+    g3-sonnet: {}
+  name: ExiomClaude
+mcp_servers:
+  filesystem:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-filesystem'
+    - /home/naca/pemrograman/virtual office agent
+    command: npx
+    enabled: true
+  gmail:
+    args:
+    - -y
+    - '@gongrzhe/server-gmail-autoauth-mcp'
+    command: npx
+    enabled: true
+    env:
+      GMAIL_CREDENTIALS_PATH: ${GDRIVE_OAUTH_CLIENT_PATH}
+  playwright:
+    args:
+    - -y
+    - '@playwright/mcp@latest'
+    - --headless
+    command: npx
+    enabled: true
+  postgres:
+    args:
+    - -y
+    - '@modelcontextprotocol/server-postgres'
+    - ${EXIOM_DB_URL}
+    command: npx
+    enabled: true
+model:
+  api_key: sk-exiom-business-proxy
+  api_mode: chat_completions
+  base_url: http://127.0.0.1:4001/v1
+  default: g3-haiku
+  provider: custom
