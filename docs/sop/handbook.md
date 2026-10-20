@@ -78,7 +78,7 @@ Manager **tidak pernah** menggantikan approval Owner untuk kategori ini - wajib 
 
 ### 3.5b Referensi & Eksplorasi Mandiri
 
-Semua agent **wajib aktif mencari referensi sendiri**, tidak hanya mengandalkan referensi yang sudah dikumpulkan Owner. Referensi Owner ada di folder terkait sebagai titik awal, bukan batasan.
+Semua agent **bebas dan didorong untuk mencari referensi sendiri** - tidak harus melulu dari referensi Owner. Referensi Owner adalah titik awal dan contoh taste yang disukai Owner, bukan batasan mutlak. Kalau kamu ketemu referensi yang lebih bagus, pakai itu.
 
 - **Cari referensi di sumber yang relevan dengan peran masing-masing** (lihat akses per-agent di bawah)
 - **Dokumentasikan referensi baru** yang ditemukan di memory agent atau decisions_log
@@ -106,8 +106,24 @@ Akses referensi per-agent:
   → pakai Agent Reach, read-only (scraping, tanpa interaksi/klik/like)
 - Agent Reach TIDAK dipakai untuk posting - risiko ban jauh lebih tinggi dibanding dipakai untuk baca
 
-Artikel/konten dibuat sekali oleh Gagah/Deril, setelah di-approve Owner 
-baru disesuaikan format dan diupload ke semua platform via API resmi.
+**Alur konten artikel (Gagah nulis):**
+```
+Gagah nulis artikel
+  -> Gagah submit ke Mia (QA struktural)
+  -> Mia submit ke approval queue Owner
+  -> Owner approve
+  -> Gagah upload ke: web/blog Exiom, Reddit, forum relevan
+  -> Gagah brief Deril: "artikel X siap, adaptasi jadi video/carousel untuk sosmed"
+  -> Deril produksi adaptasi video/carousel dari artikel
+  -> Deril submit ke Mia QA -> approval Owner -> Deril upload ke: IG, TikTok, X, Threads, YouTube Shorts
+```
+
+**Alur konten video/grafis original (Deril produksi):**
+```
+Mia buat brief konten
+  -> Deril produksi via Remotion
+  -> Submit ke Mia QA -> approval Owner -> Deril upload ke semua sosmed
+```
 
 Trend baru yang urgent: agent terkait lapor ke manager dulu ("ada trend 
 baru, kira-kira urgent buat di-post?") - kalau urgent, proses upload 

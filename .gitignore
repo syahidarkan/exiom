@@ -39,3 +39,7 @@ temp/
 # LiteLLM
 litellm.db
 .litellm/
+gcp-oauth.keys.json
+credentials/*.json
+.env.test
+tools/python/*/

@@ -237,18 +237,26 @@ Setelah approval Owner granted, sebelum eksekusi upload:
 
 ---
 
-## 4. Jadwal Optimal Upload (berdasarkan data engagement umum Indonesia)
+## 4. Golden Hours Upload (Indonesia, data benchmark umum)
 
-| Platform | Waktu terbaik | Frekuensi |
-|---|---|---|
-| TikTok | 07.00-09.00 WIB, 18.00-21.00 WIB | 1-2x/hari |
-| Instagram Reels | 07.00-09.00 WIB, 19.00-21.00 WIB | 1x/hari |
-| YouTube Shorts | 15.00-17.00 WIB | 1x/hari |
-| Facebook | 13.00-15.00 WIB | 1x/hari |
-| X | 08.00-10.00 WIB | 1-3x/hari |
-| Threads | 08.00-10.00 WIB | 2-3x/hari |
+Upload HARUS di jam-jam ini - jangan random. Engagement di luar window ini bisa 40-60% lebih rendah.
 
-*Ini baseline - update berdasarkan data analytics platform sendiri setelah 30 hari posting*
+| Platform | Golden Hour Utama | Golden Hour Kedua | Frekuensi | Catatan |
+|---|---|---|---|---|
+| TikTok | 18.00-21.00 WIB | 07.00-09.00 WIB | 1-2x/hari | Prime time malam paling kuat |
+| Instagram Reels | 19.00-21.00 WIB | 07.00-08.00 WIB | 1x/hari | Carousel bisa 12.00-14.00 |
+| YouTube Shorts | 12.00-14.00 WIB | 15.00-17.00 WIB | 1x/hari | Weekend tambah slot 09.00-11.00 |
+| Facebook | 13.00-15.00 WIB | 19.00-21.00 WIB | 1x/hari | Engagement FB lebih di siang |
+| X (Twitter) | 08.00-10.00 WIB | 18.00-20.00 WIB | 1-3x/hari | News cycle pagi lebih aktif |
+| Threads | 08.00-10.00 WIB | 20.00-22.00 WIB | 2-3x/hari | Mirror strategy X |
+
+**Aturan praktis:**
+- Kalau cuma bisa 1 waktu: pilih golden hour utama platform terbesar (TikTok/IG) = 19.00-20.00 WIB
+- Jangan upload semua platform dalam 5 menit bersamaan - spread 15-30 menit antar platform
+- Hari dengan engagement tertinggi: Selasa-Kamis (hindari Senin pagi dan Jumat sore)
+- Weekend: engagement TikTok dan IG masih bagus, X dan Threads drop signifikan
+
+*Update baseline ini dengan data analytics platform setelah 30 hari posting aktif*
 
 ---
 
