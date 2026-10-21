@@ -1,4 +1,4 @@
-# Exiom Agent Tools — Overview
+# Exiom Agent Tools - Overview
 
 > Machine-readable registry: `tools/tools-manifest.json`
 > Install script: `bash tools/install-tools.sh`
@@ -30,7 +30,7 @@
 | typst | Binary | Hugo | ✅ installed | `~/.local/bin/typst` |
 | psutil | Python lib | Kenzie | ✅ installed | `import psutil` |
 
-## Docker Services — Start All
+## Docker Services - Start All
 
 ```bash
 docker compose -f tools/docker-compose.tools.yml up -d
@@ -48,18 +48,18 @@ docker compose -f tools/docker-compose.tools.yml up uptime-kuma -d  # Kenzie/Hug
 
 Add to `.env`:
 ```env
-# Deril — Pexels stock assets
+# Deril - Pexels stock assets
 PEXELS_API_KEY=your_pexels_api_key
 
-# Gagah — Reddit scraping
+# Gagah - Reddit scraping
 REDDIT_CLIENT_ID=your_reddit_app_id
 REDDIT_CLIENT_SECRET=your_reddit_app_secret
 REDDIT_USER_AGENT=exiom-seo-bot/1.0
 
-# Nela/Ale — WhatsApp (after linking via QR)
+# Nela/Ale - WhatsApp (after linking via QR)
 WA_SESSION_DIR=tools/node/baileys-wa/session
 ```
 
 **BUTUH DARI OWNER:**
-- `PEXELS_API_KEY` — daftar gratis di pexels.com/api — alasan: diperlukan Deril untuk download stock assets — buat lanjut ke: pipeline konten Remotion
-- `REDDIT_CLIENT_ID` + `REDDIT_CLIENT_SECRET` — buat di reddit.com/prefs/apps — alasan: Gagah butuh untuk riset keyword dari forum — buat lanjut ke: SEO research pipeline
+- `PEXELS_API_KEY` - daftar gratis di pexels.com/api - alasan: diperlukan Deril untuk download stock assets - buat lanjut ke: pipeline konten Remotion
+- `REDDIT_CLIENT_ID` + `REDDIT_CLIENT_SECRET` - buat di reddit.com/prefs/apps - alasan: Gagah butuh untuk riset keyword dari forum - buat lanjut ke: SEO research pipeline

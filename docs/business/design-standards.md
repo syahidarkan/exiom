@@ -73,7 +73,7 @@ npx remotion still <composition> output.png --frame=0
 
 ### Referensi style video yang disukai Owner
 - Referensi ada di `Refrensi Video/` (Ref 1-5.mp4)
-- Cari referensi tambahan mandiri: TikTok explore, YouTube Shorts, Motionographer.com
+- Boleh Cari referensi tambahan mandiri (Bukan Kewajiban, Kalau Memang dirasa perlu): TikTok explore, YouTube Shorts, Motionographer.com
 - Benchmark mingguan: screenshot 3 video terbaik yang ditemukan, simpan di memory Deril
 
 ---

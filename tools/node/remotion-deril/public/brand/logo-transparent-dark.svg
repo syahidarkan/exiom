@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" width="100%" height="100%">
+  <g transform="translate(68, 45)">
+    <!-- E -->
+    <path d="M0 0 H52 V15 H18 V36 H46 V51 H18 V75 H52 V90 H0 Z" fill="#1C1C1E"/>
+    <!-- X: Diagonal 1 (Kiri Atas ke Kanan Bawah) Charcoal -->
+    <polygon points="68,0 86,0 142,90 124,90" fill="#1C1C1E"/>
+    <!-- X: Diagonal 2 (Kanan Atas ke Kiri Bawah) Signal Orange -->
+    <polygon points="142,0 124,0 68,90 86,90" fill="#FF5A1F"/>
+    <!-- I -->
+    <rect x="160" y="0" width="18" height="90" fill="#1C1C1E"/>
+    <!-- O -->
+    <path d="M198 45 C198 20 216 0 242 0 C268 0 286 20 286 45 C286 70 268 90 242 90 C216 90 198 70 198 45 Z M218 45 C218 59 228 73 242 73 C256 73 266 59 266 45 C266 31 256 17 242 17 C228 17 218 31 218 45 Z" fill="#1C1C1E"/>
+    <!-- M -->
+    <path d="M304 0 H322 L343 54 L364 0 H382 V90 H366 V32 L348 78 H338 L320 32 V90 H304 Z" fill="#1C1C1E"/>
+  </g>
+</svg>

@@ -1,0 +1,271 @@
+/**
+ * Office database — the office's OWN store, separate from Hermes' kanban.db.
+ *
+ * SERVER ONLY. This module must never be imported from a client component —
+ * the UI goes through `/api/hermes/office`.
+ */
+import Database from 'better-sqlite3'
+import { mkdirSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import type { AgentDivision } from '@/types/hermes'
+import type { AvatarKind, AvatarState, AvatarWrite } from './types'
+
+export type { AvatarKind, AvatarState, AvatarWrite } from './types'
+
+const DB_PATH = process.env.OFFICE_DB_PATH ?? resolve(process.cwd(), 'data/office.db')
+
+let db: Database.Database | null = null
+
+/** Open (once) and migrate. Safe to call on every request. */
+export function officeDb(): Database.Database {
+  if (db) return db
+  mkdirSync(dirname(DB_PATH), { recursive: true })
+  const d = new Database(DB_PATH)
+  d.exec(`
+    PRAGMA journal_mode = WAL;
+    PRAGMA foreign_keys = ON;
+
+    CREATE TABLE IF NOT EXISTS office_meta (
+      key        TEXT PRIMARY KEY,
+      value      TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS avatar_state (
+      avatar_id  TEXT PRIMARY KEY,
+      name       TEXT NOT NULL,
+      division   TEXT NOT NULL,
+      kind       TEXT NOT NULL,
+      x          REAL NOT NULL,
+      z          REAL NOT NULL,
+      level      INTEGER NOT NULL DEFAULT 0,
+      activity   TEXT NOT NULL,
+      facing     REAL NOT NULL DEFAULT 0,
+      spawned    INTEGER NOT NULL DEFAULT 0,
+      anchored   INTEGER NOT NULL DEFAULT 0,
+      updated_at TEXT NOT NULL
+    );
+  `)
+  // Additive migrations for databases created by an earlier version.
+  // `CREATE TABLE IF NOT EXISTS` does NOT add columns to a table that already
+  // exists, so a new column needs its own ALTER — and it has to be guarded,
+  // because SQLite has no `ADD COLUMN IF NOT EXISTS` and re-running would throw.
+  const cols = new Set(
+    (d.prepare(`PRAGMA table_info(avatar_state)`).all() as { name: string }[]).map((c) => c.name),
+  )
+  if (!cols.has('anchored')) {
+    d.exec(`ALTER TABLE avatar_state ADD COLUMN anchored INTEGER NOT NULL DEFAULT 0`)
+  }
+  db = d
+  return d
+}
+
+/** Test-only: tutup handle DB dan lupakan — supaya selftest bisa memakai DB
+ *  tmp yang berbeda antar blok (modul ini singleton per proses). */
+export function _resetOfficeDbForTest(): void {
+  try {
+    db?.close()
+  } catch {
+    // belum pernah dibuka / sudah ditutup
+  }
+  db = null
+}
+
+const now = () => new Date().toISOString()
+
+/* ------------------------------------------------------------------ meta -- */
+
+export const DEFAULT_OFFICE_NAME = 'Hermes Office'
+
+/** The office name shown (and editable) in the lobby. */
+export function getOfficeName(): string {
+  const row = officeDb().prepare(`SELECT value FROM office_meta WHERE key = 'name'`).get() as
+    | { value: string }
+    | undefined
+  return row?.value ?? DEFAULT_OFFICE_NAME
+}
+
+export function setOfficeName(value: string): string {
+  const clean = value.trim().slice(0, 60) || DEFAULT_OFFICE_NAME
+  officeDb()
+    .prepare(
+      `INSERT INTO office_meta (key, value, updated_at) VALUES ('name', ?, ?)
+       ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at`,
+    )
+    .run(clean, now())
+  return clean
+}
+
+/* ----------------------------------------------------------------- avatars -- */
+
+type AvatarRow = {
+  avatar_id: string
+  name: string
+  division: string
+  kind: string
+  x: number
+  z: number
+  level: number
+  activity: string
+  facing: number
+  spawned: number
+  anchored: number
+  updated_at: string
+}
+
+const toAvatar = (r: AvatarRow): AvatarState => ({
+  avatarId: r.avatar_id,
+  name: r.name,
+  division: r.division as AgentDivision,
+  kind: r.kind as AvatarKind,
+  x: r.x,
+  z: r.z,
+  level: r.level,
+  activity: r.activity,
+  facing: r.facing,
+  spawned: r.spawned === 1,
+  anchored: r.anchored === 1,
+  updatedAt: r.updated_at,
+})
+
+export function listAvatars(): AvatarState[] {
+  const rows = officeDb().prepare(`SELECT * FROM avatar_state ORDER BY division, name`).all() as AvatarRow[]
+  return rows.map(toAvatar)
+}
+
+/**
+ * Hapus SATU baris avatar (`kill` membersihkan badan dari kantor).
+ *
+ * Id avatar agent = `agent:<nama>` (lihat syncAvatars di scene.ts:
+ * baris sintetis memakai id itu). `default` tidak pernah punya baris —
+ * false untuk nama itu adalah hasil sah, bukan error. Mengembalikan true
+ * hanya bila sebuah baris benar-benar terhapus.
+ */
+export function deleteAvatar(avatarId: string): boolean {
+  const clean = avatarId.trim()
+  if (!clean) return false
+  const r = officeDb().prepare(`DELETE FROM avatar_state WHERE avatar_id = ?`).run(clean) as { changes: number }
+  return Number(r?.changes ?? 0) > 0
+}
+
+/**
+ * Batch upsert. The scene calls this every few seconds for every avatar, so it
+ * runs inside ONE transaction — a per-avatar round trip was measurably wasteful
+ * and left the file open for longer than it needed to be.
+ */
+export function saveAvatars(list: AvatarWrite[]): number {
+  if (!list.length) return 0
+  const d = officeDb()
+  const stmt = d.prepare(
+    `INSERT INTO avatar_state
+       (avatar_id, name, division, kind, x, z, level, activity, facing, spawned, anchored, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT(avatar_id) DO UPDATE SET
+       name = excluded.name, division = excluded.division, kind = excluded.kind,
+       x = excluded.x, z = excluded.z, level = excluded.level,
+       activity = excluded.activity, facing = excluded.facing,
+       spawned = excluded.spawned, anchored = excluded.anchored,
+       updated_at = excluded.updated_at`,
+  )
+  const ts = now()
+  d.exec('BEGIN')
+  try {
+    for (const a of list) {
+      stmt.run(
+        a.avatarId, a.name, a.division, a.kind,
+        a.x, a.z, a.level, a.activity, a.facing,
+        a.spawned ? 1 : 0, a.anchored ? 1 : 0, ts,
+      )
+    }
+    d.exec('COMMIT')
+  } catch (e) {
+    d.exec('ROLLBACK')
+    throw e
+  }
+  return list.length
+}
+
+/**
+ * Klaim slot dummy untuk agent: jadikan baris kanonik `agent:<nama>`.
+ *
+ * Kenapa fungsi ini ada: klaim lama menulis ulang baris slot yang diklik TANPA
+ * memeriksa baris kanonik — agent yang sudah punya `agent:<nama>` dapat BADAN
+ * KEDUA di dua tempat, dan `kill` (yang menghapus `agent:<nama>`) tidak
+ * menemukannya. Satu agent = satu baris, SELALU `agent:<nama>`.
+ *
+ * - Baris kanonik sudah ada → pindahkan ke posisi slot, buang baris slot.
+ * - Belum ada → pakai ulang baris slot: ganti id jadi kanonik, kind agent.
+ * Mengembalikan apa yang terjadi, apa adanya.
+ */
+export function claimAvatar(
+  avatarId: string,
+  name: string,
+): { avatarId: string; moved: boolean; slotRemoved: boolean } {
+  const clean = name.trim().toLowerCase()
+  const canonical = `agent:${clean}`
+  const d = officeDb()
+  const slot = d.prepare(`SELECT * FROM avatar_state WHERE avatar_id = ?`).get(avatarId) as AvatarRow | undefined
+  if (!slot) throw new Error(`slot \"${avatarId}\" tidak ada di kantor`)
+  const existing = d.prepare(`SELECT avatar_id FROM avatar_state WHERE avatar_id = ?`).get(canonical) as
+    | { avatar_id: string }
+    | undefined
+  const ts = now()
+  if (existing) {
+    // Pindahkan badan kanonik ke posisi slot, lalu buang baris slotnya.
+    d.prepare(
+      `UPDATE avatar_state SET x = ?, z = ?, level = ?, facing = ?, division = ?, updated_at = ? WHERE avatar_id = ?`,
+    ).run(slot.x, slot.z, slot.level, slot.facing, slot.division, ts, canonical)
+    d.prepare(`DELETE FROM avatar_state WHERE avatar_id = ?`).run(avatarId)
+    return { avatarId: canonical, moved: true, slotRemoved: true }
+  }
+  d.prepare(
+    `UPDATE avatar_state SET avatar_id = ?, name = ?, division = ?, kind = 'agent', spawned = 1, updated_at = ? WHERE avatar_id = ?`,
+  ).run(canonical, clean, slot.division, ts, avatarId)
+  return { avatarId: canonical, moved: false, slotRemoved: false }
+}
+
+/* ---------------------------------------------------------------- seeding -- */
+
+/**
+ * The office ships with DUMMY avatars, not agents (poin 3 + 4): three per division
+ * (one manager, two staff) plus a receptionist, all parked at their workstations.
+ * They cost nothing — they are rows in this table and meshes in the scene, and no
+ * model is ever called for them. Clicking one offers to spawn a REAL agent in its
+ * place.
+ *
+ * Seeding runs once, when the table is empty, and is idempotent afterwards: a
+ * dummy that has been spawned keeps `kind: 'agent'` and is never re-created.
+ */
+export type DummySpec = {
+  avatarId: string
+  name: string
+  division: AgentDivision
+  x: number
+  z: number
+  level: number
+  activity: string
+  facing: number
+  /** Pinned in place forever — the receptionist never leaves the counter. */
+  anchored?: boolean
+}
+
+export function seedAvatars(specs: DummySpec[]): number {
+  const d = officeDb()
+  const existing = d.prepare(`SELECT COUNT(*) AS n FROM avatar_state`).get() as { n: number }
+  if (existing.n > 0) return 0
+  return saveAvatars(
+    specs.map((s) => ({
+      avatarId: s.avatarId,
+      name: s.name,
+      division: s.division,
+      kind: 'dummy' as const,
+      x: s.x,
+      z: s.z,
+      level: s.level,
+      activity: s.activity,
+      facing: s.facing,
+      spawned: false,
+      anchored: !!s.anchored,
+    })),
+  )
+}

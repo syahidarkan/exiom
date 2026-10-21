@@ -1,131 +1,73 @@
-# Analisis Referensi Video — Panduan Deril
+# Analisis Referensi: New Ref 4.mp4 (oleh Deril, 20 Okt 2026)
 
-> **UPDATE 20 Oktober 2026** — Analisis ini dibuat ulang berdasarkan 8 referensi baru
-> (tersimpan di `Refrensi Video/New Ref 1–8.mp4`). Referensi lama (Ref 3, Ref 5)
-> sudah **tidak berlaku**. Ikuti panduan di bawah ini untuk semua video berikutnya.
+Sumber: Refrensi Video/New Ref 4.mp4. Spesifikasi asli: 1280x720 (landscape 16:9), 30 fps, durasi 15,43 detik.
+Metode: watch.py (--engine local, token-burner, 768px). Frame yang dibaca langsung: 0001 sampai 0008, 0010 sampai 0012, 0014, 0015 (13 frame). Frame 0009 dan 0013 tidak ikut ter-extract, jadi tidak dianalisis. Warna dicek ulang dengan sampling piksel dari frame 0 s, 5 s, dan 10 s, bukan tebakan saja.
 
----
+## 1. Apa isi videonya
 
-## Template Utama: Dark Glow + Orange Accent
+Ini promo produk AI (Claude Opus 5.5), dan itu penting: logo dan palet mereknya tidak boleh ikut ditiru. Yang ditiru adalah BAHASA VISUALNYA, bukan identitasnya.
 
-### Palet Warna WAJIB
+Alurnya, dibaca dari frame:
+- 0 s sampai ~3 s: kartu cream dengan pola titik halftone di tepi kiri dan kanan. Di tengah ada bentuk lonjong (lozenge) krem, lalu muncul starburst oranye.
+- ~3 s sampai ~5 s: wordmark "Claude Opus 5.5" tampil di tengah pada latar cream dengan glow peach lembut.
+- ~5 s sampai ~7 s: latar berubah jadi gelap (hitam ke cokelat tua di tengah). Angka "5.5" besar disusun dari partikel emas dan tembaga, dengan kilau horizontal lewat di tengah.
+- ~7 s sampai ~9 s: beralih ke screenshot antarmuka chat gelap. Kalimat sapaan "Halo, Ngorz, mau bikin apa hari ini?" dan prompt "Buatkan video motion grafis 20 detik untuk Opus 5.5".
+- ~9 s sampai ~11 s: pil status berisi spinner dan teks "Menganimasikan." dengan gradien kaca (koral, lavender, amber). Ini sengaja jadi jeda.
+- ~11 s sampai ~13 s: screenshot aplikasi editor (panel easing, timeline, keyframe). Kontennya memperlihatkan produk ini bekerja, bukan cuma diklaim.
+- ~13 s sampai ~15 s: kembali ke tepi dot halftone gelap, dengan pecahan koral di tengah, lalu wordmark muncul pelan dari blur ("Cla...").
 
-| Token | Warna | Keterangan |
-|-------|-------|-----------|
-| Background utama | `#0D0D0D` | Hitam pekat, bukan navy, bukan biru |
-| Card/surface | `#1A1A1A` | Sedikit lebih terang dari bg |
-| Accent/CTA | `#E87040` | Oranye hangat — **bukan kuning, bukan merah terang** |
-| Glow blob A | `#E87040` | Glow di pojok kiri atas atau kanan bawah |
-| Glow blob B | `#C0392B` | Glow tambahan (lebih merah), bisa overlap |
-| Text utama | `#FFFFFF` | Putih bersih |
-| Text muted | `#A0A0A0` | Abu-abu untuk sub-teks |
+Pola besarnya: dua kutub, cream terang dan gelap hangat, dipindah-pindah. Pindah scene lewat perubahan latar dan tipografi, bukan lewat potongan keras.
 
-**Variasi cream (jarang):** Background `#F5EDE0`, accent `#C94F2A` — pakai hanya untuk
-hook yang ingin feel "kertas/analog". Mayoritas konten pakai dark.
+## 2. Palet yang benar-benar terukur (sampling piksel)
 
-### Elemen Visual WAJIB Ada Per Video
+- Frame 0 s (cream): #F0E8E0 dominan (sekitar 19% piksel), varian #F8E8D8, #F8E0D0, #E8D0C0.
+- Frame 5 s dan 10 s (gelap): #080808 dominan (33 sampai 38% piksel), sisanya cokelat gelap #181008, #281810, #382018.
+- Titik halftone: koral pucat sekitar #F2A7A3 sampai #F0B5A5.
+- Aksen oranye/terakota: sekitar #D97757 sampai #E8795A.
 
-1. **GlowBlob** — 2–3 lingkaran blur berwarna oranye/merah di pojok background. Bukan full-color panel, tapi "glow spot" seperti lampu yang bocor dari belakang.
+Untuk Exiom, palet ini TIDAK dipakai langsung. Brand tokens wajib: Accent #FF5A1F, Background dark #1C1C1E, Background light #FAFAFA, Text #0A0A0A/#FAFAFA, Text secondary #6B7280. Palet referensi hanya memberi "logika" dua kutub terang/gelap.
 
-2. **TagPill** — pill kecil di atas judul/hook, contoh: `✳ KUNCINYA`, `✳ UMKM`, `✳ FAKTA`. Warna background accent dengan opacity 20%, border tipis.
+## 3. Elemen visual yang BENAR-BENAR ada di referensi (dan dipakai)
 
-3. **KineticText** — satu atau dua kata dalam kalimat diberi highlight: kotak outline (bukan highlight penuh) mengelilingi kata target. Animasi: kotak muncul dari scale 0, teks berubah warna jadi accent.
+1. Pola titik halftone di tepi kiri dan kanan, makin rapat dan tebal ke tepi, makin tipis ke tengah (terlihat jelas di frame 1, 2, 3, 4, 12, 14).
+2. Dua kutub latar: cream terang dan gelap hangat/hitam. Pergantian antar dua kutub adalah ritme utama.
+3. Glow radial lembut di tengah, tanpa tepi keras (frame 4, 5, 6, 15).
+4. Tipografi sans-serif geometris, bobot reguler sampai medium. Teks utama besar di tengah, teks kecil di antarmuka.
+5. Screenshot UI sungguhan (chat, editor). Ini bagian yang paling membuat video terasa "nyata" dan bukan ilustrasi generik.
+6. Animasi masuk teks dengan blur ke fokus (frame 15, kata "Mau bikin apa" tajam, kata berikutnya memudar).
+7. Jeda pendek sebagai napas: pil "Menganimasikan." dan wordmark muncul dari blur.
 
-4. **BrowserMock** — kartu putih mengapung dengan 3 dots (●●●) di kiri atas dan URL di address bar. Background kartu putih, shadow gelap. Isi konten: bisa chat WA, tabel stok, daftar pesanan.
+## 4. Yang TIDAK dipakai (sengaja)
 
-5. **BottomSub** — teks kecil centered di bawah layar (bukan kotak hitam!). Teks putih polos, satu baris, bisa ada satu kata accent. Ini teks yang muncul bersamaan VO.
+- Logo starburst Claude dan wordmark mereknya. Itu merek orang lain.
+- Palet terakota/peach dan latar screenshot Claude.
+- Angka "5.5" partikel. Efek partikel berat butuh shader atau ribuan elemen. Dan dari sisi brief, ini tidak relevan untuk pemilik usaha kecil.
+- Teks on-screen dalam bentuk caption/subtitle. Owner melarang ini dan saya tidak menambahkan apa pun yang mirip. Teks yang ada di referensi adalah judul dan antarmuka, bukan transkrip VO.
+- Pill tag dengan simbol aneh (✳) atau ikon emoji. Tidak ada di referensi.
 
-6. **FrameCounter** — "FRAME XXXX" di pojok kanan atas, font monospace kecil. Warna `#333333` (subtle, tidak mengganggu).
+## 5. Adaptasi ke brief Exiom (keputusan saya, perlu QA Mia)
 
-### Elemen yang DILARANG
+- Format: brief dan design-standards minta 9:16 (1080x1920) untuk TikTok dan YouTube Shorts. Referensi 16:9. Saya render 9:16 dan menyusun ulang komposisi jadi vertikal, dengan tepi halftone tetap di kiri dan kanan.
+- Visual adalah UI sungguhan dalam bentuk mockup kode (Remotion): daftar chat, badge hitungan, bubble pesan. Ini meniru prinsip "screenshot UI" di referensi, tanpa memakai screenshot asli orang lain.
+- Tidak ada teks overlay yang mengulang VO. Teks yang tampil hanya bagian dari UI mockup (nama chat, isi bubble, angka penunjuk waktu).
+- Logo Exiom kecil di ujung video (sesuai brief), bukan di awal.
+- VO: id-ID-ArdiNeural via edge-tts (gratis), rate -8%.
 
-- ❌ Background biru vivid (`#1441E5` atau sejenis)
-- ❌ Keyboard mockup 3D
-- ❌ Ghost text besar di background
-- ❌ Subtitle bar hitam di bawah (kotak hitam semi-transparan)
-- ❌ Side text vertikal
-- ❌ Stamp/sticker diagonal
+## 6. Timing dan pacing
 
----
+- Hook dalam 3 detik pertama: situasi konkret, bukan pertanyaan. Di Exiom, hook dibuat dari dua angka jam di UI chat, bukan dari kalimat.
+- Catatan jujur: saya TIDAK mengukur timestamp per frame dari referensi. Frame yang dianalisis hanya 13 dari 15 detik, dan waktu tiap frame tidak saya verifikasi. Jadi pembagian detik di bagian ini hanya perkiraan, bukan fakta.
+- Pergantian scene setiap 2 sampai 9 detik, mengikuti panjang VO. Tidak ada transisi kosong.
+- Total ~34,6 detik (dalam rentang 30 sampai 45 detik brief).
 
-## Scene Types & Kapan Pakai
+## 7. Catatan jujur
 
-### `hook` — Scene pembuka (wajib scene pertama)
-- 2 baris teks besar uppercase/mixed
-- Baris ke-2 pakai `highlightWord` (kinetic outline box)
-- Ada TagPill di atas
-- Durasi: 3–5 detik
-- Contoh: `"Pesanan jam 2,"` / `"kebaca jam 9."` → highlight: `"jam 9."`
+- Analisis ini dari 13 frame, bukan dari setiap frame. Gerakan (easing, kecepatan) hanya disimpulkan dari posisi antar frame, belum diukur dari video penuh.
+- Hasil render harus dibandingkan frame-per-frame dengan referensi sebelum submit approval (lihat SOP di SOUL.md langkah 9).
 
-### `step` — Alur langkah dengan browser mockup
-- Circle angka besar di kiri (warna accent)
-- Label langkah kecil di bawah circle
-- BrowserMock di kanan/bawah dengan konten situasi nyata (chat WA, dll.)
-- Durasi: 8–12 detik
+## 8. Catatan implementasi v1 (20 Okt, sebelum QA)
 
-### `stat` — Angka besar satu fakta
-- Angka sangat besar (200px+), warna putih
-- Unit/label kecil di bawah angka
-- TagPill konteks di atas (contoh: "MINGGU INI", "SEBULAN")
-- Durasi: 5–8 detik
-
-### `compare` — Dua kondisi berdampingan
-- 2 kartu gelap rounded, side by side
-- Kiri: kondisi buruk (bisa ada garis coret), icon emoji
-- Kanan: kondisi baik, warna accent
-- TagPill "BEDANYA" / "KONDISI" / "SOLUSINYA" di atas
-- Durasi: 5–8 detik
-
-### `chat` — Bubble chat berurutan
-- Bubble chat muncul satu per satu dari bawah
-- Background bubble abu-abu gelap, teks putih
-- Counter angka di pojok (misal: "20×")
-- Durasi: 8–12 detik
-
-### `ledger` — Tabel perbandingan angka
-- Header kolom: CATATAN vs FISIK (atau sesuai konteks)
-- Row dengan tanda merah jika selisih
-- Durasi: 8–12 detik
-
-### `cta` — Call to action penutup
-- Pertanyaan besar di tengah layar
-- Sub-teks ajakan komentar
-- TagPill "TANYA" / "KAMU"
-- Durasi: 5–8 detik
-
----
-
-## Audio & Voice
-
-- Voice: `id-ID-ArdiNeural` (Edge-TTS)
-- Rate: `-8%` (sedikit lebih lambat dari default)
-- Pitch: `+0Hz` (natural)
-- BGM: `audio/bgm/house-vibez.mp3` (dipilih Deril, cocok dengan vibes dark modern)
-- Volume BGM: 20–30% dari VO — jangan terlalu keras
-
----
-
-## Alur Kerja Deril (Wajib Diikuti)
-
-1. **Baca brief Mia** di `workspace/mia/brief_deril.md`
-2. **Cek referensi terbaru** di folder `Refrensi Video/` — pelajari 2–3 video yang paling relevan dengan topik brief
-3. **Edit konten** di `tools/node/remotion-deril/src/data/reels-content.json` — JANGAN edit `all.ts` langsung
-4. **Generate VO** dengan `python3 workspace/deril/scripts/gen_vo.py` — ini auto-generate `all.ts` juga
-5. **Render** dengan `npx remotion render src/index.ts <reel_id> workspace/deril/output/<filename>.mp4`
-6. **Cek output**: pastikan ada audio, durasi wajar (20–40 detik), tampilan sesuai dark glow template
-7. **Ajukan ke approval queue** Owner sebelum upload
-8. **Upload setelah approved** via `tools/helpers/deril-publish.py`
-
----
-
-## Checklist Sebelum Submit Approval
-
-- [ ] Background `#0D0D0D` (bukan biru, bukan abu-abu standar)
-- [ ] Ada GlowBlob oranye/merah di minimal 1 scene
-- [ ] Ada TagPill di setiap scene
-- [ ] Ada KineticText di scene hook
-- [ ] Tidak ada caption/subtitle bar hitam
-- [ ] Audio VO terdengar jelas, tidak clipping
-- [ ] BGM ada dan tidak terlalu keras
-- [ ] Durasi total 20–45 detik
-- [ ] FrameCounter muncul di pojok kanan atas
+- Komponen: tools/node/remotion-deril/src/Reel.tsx, 6 scene (hookClock, chatBadge, bubbles, waitingSwap, chatStack, closeCta), format 1080x1920.
+- Still frame 0, 40, 110, 190, 300, 420, 520 sudah dicek dengan vision: tidak ada subtitle, tidak ada teks yang tumpang tindih, tidak ada logo di awal.
+- Kekurangan yang saya tahu: scene bubble dan chatStack masih tampil sebagai skeleton (bar abu-abu) dan belum sekuat referensi. Referensi punya screenshot UI yang detail, sedangkan ini mockup sederhana. Ini akan saya bandingkan lagi setelah render v1 selesai.
+- Palet yang dipakai adalah brand token Exiom (#FF5A1F, #1C1C1E, #FAFAFA), bukan palet referensi.

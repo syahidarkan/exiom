@@ -2,6 +2,11 @@
 .env
 *.env.local
 *.env.production
+credentials/
+gcp-oauth.keys.json
+*.keys.json
+*service-account*.json
+*oauth*.json
 
 # Dependencies
 node_modules/
@@ -43,3 +48,23 @@ gcp-oauth.keys.json
 credentials/*.json
 .env.test
 tools/python/*/
+
+# File referensi besar
+Refrensi\ Pitchdeck/
+Refrensi Pitchdeck/
+*.pdf
+*.pptx
+
+# Runtime data — jangan commit
+.docker-data/
+.hermes-office-data/
+tools/sessions/
+
+# Video/audio hasil generate (besar, tidak perlu di repo)
+workspace/deril/audio/
+workspace/deril/output/*.mp4
+workspace/deril/output/*.mov
+
+# Refrensi video besar
+"Refrensi Video/"
+Refrensi\ Video/

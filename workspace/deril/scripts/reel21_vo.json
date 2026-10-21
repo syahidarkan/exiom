@@ -1,0 +1,38 @@
+[
+  {
+    "i": 0,
+    "text": "Pesanan jam 2 siang, baru kebaca jam 9 malam.",
+    "audio": "audio/reel21/s0.mp3",
+    "dur": 5.57
+  },
+  {
+    "i": 1,
+    "text": "Di HP ada 47 chat belum dibalas. Tiga di antaranya pesanan.",
+    "audio": "audio/reel21/s1.mp3",
+    "dur": 7.82
+  },
+  {
+    "i": 2,
+    "text": "Yang satu minta 20 kotak. Yang satu tanya bisa diantar hari ini atau nggak. Yang terakhir cuma kirim foto menu.",
+    "audio": "audio/reel21/s2.mp3",
+    "dur": 11.14
+  },
+  {
+    "i": 3,
+    "text": "Pelanggannya nunggu, lalu pindah ke toko sebelah.",
+    "audio": "audio/reel21/s3.mp3",
+    "dur": 4.78
+  },
+  {
+    "i": 4,
+    "text": "Ini ilustrasi, tapi polanya sering terjadi. Pesanan tenggelam di antara obrolan keluarga, foto grup, dan promo.",
+    "audio": "audio/reel21/s4.mp3",
+    "dur": 11.16
+  },
+  {
+    "i": 5,
+    "text": "Kamu juga begini?",
+    "audio": "audio/reel21/s5.mp3",
+    "dur": 2.54
+  }
+]

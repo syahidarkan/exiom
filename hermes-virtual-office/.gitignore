@@ -1,0 +1,29 @@
+# deps
+node_modules/
+.pnp
+.pnp.js
+
+# next
+.next/
+.next-dev/
+out/
+build/
+next-env.d.ts
+
+# env — never commit keys
+.env
+.env.local
+.env.*.local
+
+# runtime data (meeting transcripts)
+data/
+
+# misc
+.DS_Store
+*.log
+npm-debug.log*
+.vercel
+*.tsbuildinfo
+
+# scratch scripts — type-checked by `next build` if left in the tree
+/tmp/
